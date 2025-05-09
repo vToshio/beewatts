@@ -2,6 +2,9 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 class Endereco(models.Model):
+    class Meta:
+        db_table = 'enderecos'
+
     id = models.AutoField(primary_key=True)
     cep = models.CharField(
         'CEP',
