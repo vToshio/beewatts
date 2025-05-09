@@ -8,3 +8,6 @@ class EnderecoAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'cep', 'uf', 'cidade', 'bairro')
     search_fields = ('cep', 'uf', 'cidade', 'bairro')
     fields = ('cep', 'uf', 'cidade', 'bairro')
+
+    def has_add_permission(self, request):
+        return False
