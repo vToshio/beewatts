@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from .cidade import Cidade
 
 class Endereco(models.Model):
     class Meta:
@@ -25,14 +26,12 @@ class Endereco(models.Model):
         null=False,
         blank=False
     )
-    cidade = models.CharField(
-        'Cidade',
-        max_length=50,
-        null=False,
-        blank=False
+    cidade = models.ForeignKey(
+        Cidade,
+        on_delete=models.CASCADE
     )
-    bairro = models.CharField(
-        'Bairro',
+    logradouro = models.CharField(
+        'Logradouro',
         max_length=100,
         null=False,
         blank=False
