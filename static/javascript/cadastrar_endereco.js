@@ -31,7 +31,6 @@ cep.addEventListener('focusout', async () => {
             const data = await response.json()
             
             if (data.hasOwnProperty('cep')) {
-                console.log(data)
                 uf.value = data['state']
                 cidade.value = data['city']
                 logradouro.value = data['street']

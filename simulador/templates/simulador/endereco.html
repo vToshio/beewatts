@@ -13,12 +13,12 @@
                     <div class="mx-auto mt-2 col-sm-4 text-center">
                         <div class="d-inline justify-content-center">
                             <img src="{% static 'svg/cadastrar-endereco.svg' %}" alt="Imagem de uma garota em uma bicicleta amarela segurando um celular, com outro celular gigante atrás dela indicando a sua localização atual.">
-                            <p>Não sabe o CEP do seu endereço? Pesquise por ele <a href="https://buscacepinter.correios.com.br/app/endereco/index.php">clicando aqui</a>!</p>
+                            <p>Não sabe o CEP do seu endereço? Pesquise por ele <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">clicando aqui</a>!</p>
                         </div>
                     </div>
                     <div class="p-3 mt-2 col-sm-6">
                         <h2 class="mb-4 text-center">Cadastrar Endereço</h2>
-                        <form action="" class="d-block w-100">
+                        <form action="{% url 'registrar_endereco' %}" method="post" class="d-block w-100">
                             {% csrf_token %}
 
                             <div id="container_msg" class="container text-center">

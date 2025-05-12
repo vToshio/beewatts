@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from .cidade import Cidade
 
 class Endereco(models.Model):
     class Meta:
@@ -19,17 +20,9 @@ class Endereco(models.Model):
         null=False,
         blank=False
     )
-    uf = models.CharField(
-        'Sigla (UF)',
-        max_length=2,
-        null=False,
-        blank=False
-    )
-    cidade = models.CharField(
-        'Cidade',
-        max_length=100,
-        null=False,
-        blank=False
+    cidade = models.ForeignKey(
+        to=Cidade,
+        on_delete=models.CASCADE
     )
     logradouro = models.CharField(
         'Logradouro',
@@ -37,6 +30,11 @@ class Endereco(models.Model):
         null=False,
         blank=False
     )
+    irradiancia = models.FloatField(
+        'Índice de Irradiância (kWh/m²/mês)',
+        null=False,
+        blank=False
+    )
 
     def __str__(self):
-        return f'{self.cidade} ({self.cep})'
+        return f'{self.cep} - {self.cidade}'

@@ -14,7 +14,7 @@ class EnderecoForm(forms.Form):
         label='UF',
         widget = forms.TextInput(attrs={
             'class': 'form-control',
-            'disabled': True,
+            'readonly': True,
             'required': 'required'
         })
     )
@@ -22,7 +22,7 @@ class EnderecoForm(forms.Form):
         label='Cidade',
         widget = forms.TextInput(attrs={
             'class': 'form-control',
-            'disabled': True,
+            'readonly': True,
             'required': 'required'
         })
     )
@@ -30,7 +30,7 @@ class EnderecoForm(forms.Form):
         label='Logradouro',
         widget = forms.TextInput(attrs={
             'class': 'form-control',
-            'disabled': True,
+            'readonly': True,
             'required': 'required'
         })
     )
