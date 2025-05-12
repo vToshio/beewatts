@@ -12,56 +12,33 @@
                 <div class="row mt-2 justify-content-center align-items-center">
                     <div class="mx-auto mt-2 col-sm-4 text-center">
                         <div class="d-inline justify-content-center">
-                            <img src="{% static 'svg/cadastrar-endereco.svg' %}" class="img-fluid" alt="Imagem de uma garota em uma bicicleta amarela segurando um celular, com outro celular gigante atrás dela indicando a sua localização atual.">
-                            <p class="text-sm">Não sabe seu endereço? Clique no botão abaixou ou deslize para o lado!</p>
-
-                            <!-- Botão de Mudar o Formulário-->
-                            <div class="d-none d-sm-block text-center mt-4">
-                                <button class="btn btn-warning btn-sm text-light" type="button" data-bs-target="#carroselFormularios" data-bs-slide="next">
-                                    Mudar Formulário
-                                </button>
-                            </div>
+                            <img src="{% static 'svg/cadastrar-endereco.svg' %}" alt="Imagem de uma garota em uma bicicleta amarela segurando um celular, com outro celular gigante atrás dela indicando a sua localização atual.">
+                            <p>Não sabe o CEP do seu endereço? Pesquise por ele <a href="https://buscacepinter.correios.com.br/app/endereco/index.php">clicando aqui</a>!</p>
                         </div>
                     </div>
                     <div class="p-3 mt-2 col-sm-6">
-                        <!-- Formulários -->
-                        <div id="carroselFormularios" class="carousel slide">
-                            <h2 class="text-center mb-4">Registrar Endereço</h2>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <form action="" class="d-block w-100">
-                                        {% csrf_token %}
-            
-                                        {% for field in cep_form.visible_fields %}
-                                        <div class="form-group mb-2">
-                                            <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
-                                            {{ field }}
-                                        </div>
-                                        {% endfor %}
-            
-                                        <div class="form-group mt-4 text-center">
-                                            <button type="button" class="btn btn-outline-warning">Registrar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="carousel-item">
-                                    <form action="" class="d-block w-100">
-                                        {% csrf_token %}
-            
-                                        {% for field in endereco_form.visible_fields %}
-                                        <div class="form-group mb-2">
-                                            <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
-                                            {{ field }}
-                                        </div>
-                                        {% endfor %}
-            
-                                        <div class="form-group mt-4 text-center">
-                                            <button type="button" class="btn btn-outline-warning">Registrar</button>
-                                        </div>
-                                    </form>
-                                </div>
+                        <h2 class="mb-4 text-center">Cadastrar Endereço</h2>
+                        <form action="" class="d-block w-100">
+                            {% csrf_token %}
+
+                            <div id="container_msg" class="container text-center">
+
                             </div>
-                        </div>
+                            {% for field in form.visible_fields %}
+                            <div class="form-group mb-2">
+                                <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                            {% endfor %}
+
+                            {% for field in form.hidden_fields %}    
+                                {{ field }}
+                            {% endfor %}
+
+                            <div class="form-group mt-4 text-center">
+                                <button id="btn_registrar" type="button" class="btn btn-outline-warning">Registrar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
