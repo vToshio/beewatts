@@ -15,7 +15,13 @@
 <body>
     {% include 'partials/_navbar.html' %}
 
+    
     <main class="w-100">
+        {% for msg in messages %}
+            <div class="w-100 bg-danger text-light text-center">
+                {{ msg }}
+            </div>
+        {% endfor %}
         {% block content %} {% endblock %}
     </main>
 

@@ -30,13 +30,6 @@ class EnderecoForm(forms.Form):
         label='Logradouro',
         widget = forms.TextInput(attrs={
             'class': 'form-control',
-            'readonly': True,
-            'required': 'required'
+            'readonly': True
         })
-    )
-    latitude = forms.FloatField(
-        widget=forms.HiddenInput()
-    )
-    longitude = forms.FloatField(
-        widget=forms.HiddenInput()
     )

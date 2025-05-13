@@ -27,8 +27,6 @@ class Endereco(models.Model):
     logradouro = models.CharField(
         'Logradouro',
         max_length=100,
-        null=False,
-        blank=False
     )
     irradiancia = models.FloatField(
         'Índice de Irradiância (kWh/m²/mês)',
