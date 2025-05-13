@@ -2,8 +2,12 @@
 
 {% block content %}
 
-<section class="container">
-    <h1>Simulador de Energia Solar</h1>
+<header class="block header text-center shadow shadow-md" style="background-image: url('https://picsum.photos/1920/1080'); background-position: center, center;">
+    <h1 class="p-5 text-light text-bold"> Simulador de Painéis Solares </h1>
+</header>
+
+<section class="container min-vh-100 my-5">
+    <a href="{% url 'registrar_endereco' %}" class="btn btn-outline-warning">Iniciar Simulador</a>
 </section>
 
 {% endblock %}

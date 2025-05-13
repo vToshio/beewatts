@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="w-100 p-5" style="background-image: url('https://picsum.photos/1920');">
+    <div class="d-flex justify-content-center">
+        <div class="card shadow shadow-lg">
+            <div class="card-header bg-warning text-center">
+            </div>
+            <div class="card-body container text-md-start bg-body-tertiary">
+                <div class="row mt-2 justify-content-center align-items-center">
+                    <div class="mx-auto mt-2 col-sm-4 text-center">
+                        <div class="d-inline justify-content-center">
+                            <img src="{% static 'svg/cadastrar-endereco.svg' %}" alt="Imagem de uma garota em uma bicicleta amarela segurando um celular, com outro celular gigante atrás dela indicando a sua localização atual.">
+                            <p>Não sabe o CEP do seu endereço? Pesquise por ele <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">clicando aqui</a>!</p>
+                        </div>
+                    </div>
+                    <div class="p-3 mt-2 col-sm-6">
+                        <h2 class="mb-4 text-center">Cadastrar Endereço</h2>
+                        <form action="{% url 'registrar_endereco' %}" method="post" class="d-block w-100">
+                            {% csrf_token %}
+
+                            <div id="container_msg" class="container text-center">
+
+                            </div>
+                            {% for field in form.visible_fields %}
+                            <div class="form-group mb-2">
+                                <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                            {% endfor %}
+
+                            {% for field in form.hidden_fields %}    
+                                {{ field }}
+                            {% endfor %}
+
+                            <div id="container_submit" class="form-group mt-4 text-center">
+                                <button id="btn_registrar" type="submit" class="btn btn-outline-warning">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'javascript/cadastrar_endereco.js' %}"></script>
+{% endblock %}
