@@ -31,5 +31,9 @@ class EnderecoForm(forms.Form):
         widget = forms.TextInput(attrs={
             'class': 'form-control',
             'readonly': True
-        })
+        }),
+        required=False
     )
+
+class DadosIniciaisForm(forms.Form):
+    pass

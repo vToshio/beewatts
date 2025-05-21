@@ -7,3 +7,6 @@ def index(request: HttpRequest):
 
 def sobre(request: HttpRequest):
     return render(request, 'navegacao/sobre.html')
+
+def teste(request: HttpRequest):
+    return render(request, 'navegacao/teste.html', {'teste': 'variável gay'})

@@ -17,7 +17,6 @@ function limpar_campos() {
     logradouro.value = ''
 }
 
-
 cep.addEventListener('focusout', async () => {
     let valor_cep = cep.value.trim()
 
@@ -32,7 +31,6 @@ cep.addEventListener('focusout', async () => {
                 cidade.value = data['localidade']
                 logradouro.value = data['logradouro']
             } else {
-                limpar_campos()
                 container_msg.innerHTML = '<p class="text-danger">CEP não encontrado!</p>'
             }
         } catch (e) {
@@ -40,7 +38,8 @@ cep.addEventListener('focusout', async () => {
             console.error(e)
         }
     } else if (!valor_cep) {
-        container_msg.innerHTML = '<p class="text-danger">Preencha todos os campos obrigatórios!</p>';
+        limpar_campos()
+        container_msg.innerHTML = '<p class="text-danger">Preencha todos os campos obrigatórios!</p>'
     } else {
         limpar_campos()
         container_msg.innerHTML = '<p class="text-danger">CEP Inválido!</p>'
@@ -49,8 +48,9 @@ cep.addEventListener('focusout', async () => {
 
 registrar.addEventListener('click', () => {
     if (!cep.value || !uf.value || !cidade.value) {
-        container_msg.innerHTML = '<p class="text-danger">Preencha todos os campos obrigatórios!</p>';
-        return;
+        container_msg.innerHTML = '<p class="text-danger">Preencha todos os campos obrigatórios!</p>'
+        limpar_campos()
+        return
     }
 
     let spinner = document.createElement('div')
