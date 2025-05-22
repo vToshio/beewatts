@@ -4,15 +4,25 @@
 
 <section class="w-100">
     <div class="row">
-        <div class="col d-none d-md-flex" style="background-image: url('https://picsum.photos/900/?blur');">
+        <div class="col d-none d-md-flex" style="background-image: url('https://picsum.photos/900/?blur'); background-position: center center; height: 500px;">
         </div>
         <div class="col w-100">
-
-            <h1 class="my-4 text-center">Dados Iniciais</h1>
-            
-            <div class="container">
-            
-            
+            <h1 class="text-center my-5">Dados Iniciais</h1>
+            <div class="d-flex justify-content-center">
+                <form action="{% url 'calcular_viabilidade' %}" method="post" class="w-50">
+                    {% csrf_token %}
+                    
+                    {% for field in form.visible_fields %}
+                        <div class="form-group mb-3">
+                            <label for="{{ field.name }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    
+                    <div class="form-group my-4 text-center">
+                        <button type="submit" class="btn btn-outline-warning">Calcular Viabilidade</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
