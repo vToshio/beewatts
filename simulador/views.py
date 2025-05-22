@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models.endereco import Endereco
 from .helpers import criar_endereco, IrradianciaError, GeolocalizacaoError
-from .forms import EnderecoForm
+from .forms import EnderecoForm, DadosIniciaisForm
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -34,4 +34,14 @@ def endereco(request: HttpRequest):
     return render(request, 'simulador/endereco.html', {'form': form}) 
 
 def dados_iniciais(request: HttpRequest):
-    return render(request, 'simulador/dados_iniciais.html', {'cep': request.session.get('cep', None)})
+    form = DadosIniciaisForm()
+    return render(request, 'simulador/dados_iniciais.html', {'form': form})
+
+def calcular_viabilidade(request: HttpRequest):
+    if request.method == 'POST':
+        form = DadosIniciaisForm(request.POST)
+        if form.is_valid():
+            raise NotImplementedError
+        raise NotImplementedError
+    else:
+        return redirect('registrar_dados')
