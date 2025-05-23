@@ -1,8 +1,8 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
-from .models.endereco import Endereco
-from .helpers import criar_endereco, IrradianciaError, GeolocalizacaoError
+from .models import Endereco, Concessionaria, PainelSolar
+from .services import EnderecoService, GeolocalizacaoError, IrradianciaError
 from .forms import EnderecoForm, DadosIniciaisForm
 
 # Create your views here.
@@ -20,12 +20,14 @@ def endereco(request: HttpRequest):
                 return redirect('registrar_dados')
             
             try:
-                endereco = criar_endereco(form.cleaned_data)
+                service = EnderecoService()
+                endereco = service.criar_endereco(cleaned=form.cleaned_data)
                 request.session['cep'] = endereco.cep
                 return redirect('registrar_dados')
             except (GeolocalizacaoError, IrradianciaError):
                 messages.error(request, 'Erro de geolocalização ao registrar endereço, tente utilizar outro CEP')
-            except Exception:
+            except Exception as e:
+                print(e)
                 messages.error(request, 'Erro interno do servidor')
         else:
             messages.error(request, 'Erro ao registrar endereço, tente utilizar outro CEP')
@@ -41,7 +43,11 @@ def calcular_viabilidade(request: HttpRequest):
     if request.method == 'POST':
         form = DadosIniciaisForm(request.POST)
         if form.is_valid():
-            raise NotImplementedError
-        raise NotImplementedError
-    else:
-        return redirect('registrar_dados')
+            endereco: Endereco = Endereco.objects.filter(cep=request.session['cep']).first()
+            consumo_usuario: int = form.cleaned_data['consumo_usuario']
+            area_disponivel: float = form.cleaned_data['area_disponivel']
+            concessionaria: Concessionaria = get_object_or_404(Concessionaria, id=form.cleaned_data['concessionaria_usuario'])
+            painel_solar: PainelSolar = get_object_or_404(PainelSolar, id=form.cleaned_data['painel_usuario'])
+
+            print(endereco, consumo_usuario, area_disponivel, concessionaria, painel_solar, sep=' - ')
+    return redirect('registrar_dados')

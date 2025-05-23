@@ -57,3 +57,6 @@ class PainelSolar(models.Model):
         self.nome = f'{self.potencia} W'
         self.area = self.largura * self.altura
         return super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.nome
