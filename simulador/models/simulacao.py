@@ -26,56 +26,21 @@ class Simulacao(models.Model):
         to=Concessionaria,
         on_delete=models.PROTECT
     )
-    consumo_atual = models.IntegerField(
-        'Consumo Médio Atual (kWh)',
-        validators=[
-            validar_positivo,
-        ],
-        null=False,
-        blank=False
-    )
-    quantidade_paineis = models.IntegerField(
-        'Quantidade Necessária de Painéis',
-        validators=[
-            validar_positivo,
-        ],
-        null=False,
-        blank=False
-    )
-    area_total = models.FloatField(
-        'Área Total (m²)',
-        validators=[
-            validar_positivo,
-        ],
-        null=False,
-        blank=False
-    )
-    consumo_estimado = models.IntegerField(
-        'Consumo Estimado (kWh)',
+    conta_luz = models.FloatField(
+        'Valor da Conta de Luz (R$)',
         validators=[
             validar_positivo,
         ],
         null=False,
         blank=False,
+        default=0
     )
-    total_investimento = models.FloatField(
-        'Total do Investimento (R$)',
+    area_disponivel = models.FloatField(
+        'Área para Instalação (m²)',
         validators=[
             validar_positivo,
         ],
-        null=False,
-        blank=False
-    )
-    tempo_payback = models.FloatField(
-        'Tempo de Payback (Meses)',
-        validators=[
-            validar_positivo,
-        ],
-        null=False,
-        blank=False
-    )
-    custo_beneficio = models.FloatField(
-        'Custo-benefício',
-        null=False,
-        blank=False
+        null=True,
+        blank=True,
+        default=40.0
     )

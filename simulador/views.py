@@ -2,8 +2,9 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
 from .models import Endereco, Concessionaria, PainelSolar
-from .services import EnderecoService, GeolocalizacaoError, IrradianciaError
+from .services import EnderecoService, SimuladorService, GeolocalizacaoError, IrradianciaError
 from .forms import EnderecoForm, DadosIniciaisForm
+from uuid import UUID
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -43,11 +44,5 @@ def calcular_viabilidade(request: HttpRequest):
     if request.method == 'POST':
         form = DadosIniciaisForm(request.POST)
         if form.is_valid():
-            endereco: Endereco = Endereco.objects.filter(cep=request.session['cep']).first()
-            consumo_usuario: int = form.cleaned_data['consumo_usuario']
-            area_disponivel: float = form.cleaned_data['area_disponivel']
-            concessionaria: Concessionaria = get_object_or_404(Concessionaria, id=form.cleaned_data['concessionaria_usuario'])
-            painel_solar: PainelSolar = get_object_or_404(PainelSolar, id=form.cleaned_data['painel_usuario'])
-
-            print(endereco, consumo_usuario, area_disponivel, concessionaria, painel_solar, sep=' - ')
+            return redirect('registrar_dados')
     return redirect('registrar_dados')

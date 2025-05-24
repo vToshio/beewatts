@@ -1,5 +1,6 @@
 from django.db import models
 from simulador.validators import validar_positivo
+from datetime import date
 
 class PainelSolar(models.Model):
     class Meta:
@@ -21,7 +22,7 @@ class PainelSolar(models.Model):
         null=False,
         blank=False
     )   
-    potencia = models.IntegerField(
+    potencia = models.FloatField(
         'Potência (W)',
         validators=[
             validar_positivo,
@@ -45,17 +46,21 @@ class PainelSolar(models.Model):
         null = False,
         blank=False
     )
-    area = models.DecimalField(
-        'Área (m²)',
-        null=False,
-        blank=False,
-        max_digits=2,
-        decimal_places=2
+    data_consulta = models.DateField(
+        'Data de Consulta',
+        null=True,
+        blank=True,
+        default=date.today
+    )
+    link = models.URLField(
+        'Link de Referência',
+        null=True,
+        blank=True
     )
 
     def save(self, *args, **kwargs):
-        self.nome = f'{self.potencia} W'
-        self.area = self.largura * self.altura
+        self.nome = f'{int(self.potencia)} W'
+        self.data_consulta = date.today()
         return super().save(*args, **kwargs)
     
     def __str__(self):

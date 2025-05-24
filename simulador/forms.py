@@ -38,22 +38,6 @@ class EnderecoForm(forms.Form):
     )
 
 class DadosIniciaisForm(forms.Form):
-    consumo_usuario = forms.IntegerField(
-        label='Consumo Atual (kWh)',
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Ex: 244, 264, 300...',
-        }),
-        required=True
-    )
-    area_disponivel = forms.FloatField(
-        label='Área Total para Instalação (m²)',
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Ex: 39.90, 300.00, 230.50...',
-        }),
-        required=True
-    )
     concessionaria_usuario = forms.ChoiceField(
         label='Concessionária',
         widget=forms.Select(attrs={
@@ -69,6 +53,22 @@ class DadosIniciaisForm(forms.Form):
             'placeholder': 'Escolha qual painel deseja simular!',
         }),
         required=True
+    )
+    conta_luz = forms.IntegerField(
+        label='Conta de Luz Atual (R$)',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ex: 49.90, 67.87...',
+        }),
+        required=True
+    )
+    area_disponivel = forms.FloatField(
+        label='Área Total para Instalação (m²)',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Esse campo é opcional',
+        }),
+        required=False
     )
 
     def __init__(self, *args, **kwargs):

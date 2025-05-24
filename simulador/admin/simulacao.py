@@ -3,8 +3,8 @@ from simulador.models.simulacao import Simulacao
 
 @admin.register(Simulacao)
 class SimulacaoAdmin(admin.ModelAdmin):
-    list_display = ('get_endereco', 'get_painel', 'get_concessionaria', 'total_investimento', 'tempo_payback', 'area_total', 'custo_beneficio')
-    list_display_links = ('get_endereco', 'get_painel', 'get_concessionaria', 'total_investimento', 'tempo_payback', 'area_total', 'custo_beneficio')
+    list_display = ('get_endereco', 'get_painel', 'get_concessionaria', 'area_disponivel', 'conta_luz')
+    list_display_links = ('get_endereco', 'get_painel', 'get_concessionaria', 'area_disponivel', 'conta_luz')
     search_fields = ('endereco__cidade__nome', 'endereco__cidade__estado__sigla', 'concessionaria__nome')
 
     def get_painel(self, obj: Simulacao):
