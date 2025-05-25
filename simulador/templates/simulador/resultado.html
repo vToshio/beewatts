@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Resultados</h1>
+
+<p> ID: {{ simulacao.id }} </p>
+<p> Sua nova conta mensal é de aproximadamente R${{ resultados.conta_nova }}</p>
+<p> Seu payback é de aproximadamente {{ resultados.payback_meses}} meses!</p>
+
+<a href="{{ simulacao.painel_solar.link }}">Link para o painel solar</a>
+
+{% endblock %}

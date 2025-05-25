@@ -1,5 +1,7 @@
 from django.db import models
 from simulador.validators import validar_positivo
+from .marca import Marca
+from datetime import date
 
 class PainelSolar(models.Model):
     class Meta:
@@ -13,6 +15,11 @@ class PainelSolar(models.Model):
         null=True,
         blank=True,
     )
+    marca = models.ForeignKey(
+        to=Marca,
+        on_delete=models.PROTECT,
+        null=True
+    )
     valor = models.FloatField(
         'Valor (R$)', 
         validators=[
@@ -21,7 +28,7 @@ class PainelSolar(models.Model):
         null=False,
         blank=False
     )   
-    potencia = models.IntegerField(
+    potencia = models.FloatField(
         'Potência (W)',
         validators=[
             validar_positivo,
@@ -29,31 +36,30 @@ class PainelSolar(models.Model):
         null=False,
         blank=False
     )
-    altura = models.FloatField(
-        'Altura (m)',
+    eficiencia = models.FloatField(
+        'Eficiência (%)',
         validators=[
             validar_positivo,
         ],
-        null = False,
-        blank=False
+        null=True,
+        blank=True,
     )
-    largura = models.FloatField(
-        'Largura (m)',
-        validators=[
-            validar_positivo,
-        ],
-        null = False,
-        blank=False
+    data_consulta = models.DateField(
+        'Data de Consulta',
+        null=True,
+        blank=True,
+        default=date.today
     )
-    area = models.DecimalField(
-        'Área (m²)',
-        null=False,
-        blank=False,
-        max_digits=2,
-        decimal_places=2
+    link = models.URLField(
+        'Link de Referência',
+        null=True,
+        blank=True
     )
 
     def save(self, *args, **kwargs):
-        self.nome = f'{self.potencia} W'
-        self.area = self.largura * self.altura
+        self.nome = f'{int(self.potencia)}W ({self.marca})'
+        self.data_consulta = date.today()
         return super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.nome

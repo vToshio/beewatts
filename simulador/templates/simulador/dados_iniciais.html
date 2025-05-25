@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -9,14 +10,26 @@
         <div class="col w-100">
             <h1 class="text-center my-5">Dados Iniciais</h1>
             <div class="d-flex justify-content-center">
-                <form action="{% url 'calcular_viabilidade' %}" method="post" class="w-50">
+                <form action="{% url 'registrar_dados' %}" method="post" class="w-50">
                     {% csrf_token %}
                     
                     {% for field in form.visible_fields %}
-                        <div class="form-group mb-3">
-                            <label for="{{ field.name }}">{{ field.label }}</label>
-                            {{ field }}
+                        {% if field.name == 'area_disponivel' %}
+                        <div class="row mb-3 justify-content-center align-items-center">
+                            <div class="col form-group d-flex justify-content-center align-items-center">
+                                <label for="informar_area" class="form-label text-center">Habilitar Área</label>
+                                <input type="checkbox" name="informar_area" id="informar_area" class="form-check mx-2">
+                            </div>
+                            <div class="col form-group">
+                                {{ field }}
+                            </div>
                         </div>
+                        {% else %}
+                            <div class="form-group mb-3">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endif %}
                     {% endfor %}
                     
                     <div class="form-group my-4 text-center">
@@ -27,5 +40,7 @@
         </div>
     </div>
 </section>
+
+<script src="{% static 'javascript/registrar_dados.js' %}"></script>
 
 {% endblock %}
