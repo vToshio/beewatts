@@ -14,7 +14,7 @@
 
 @keyframes typing {
     from { width: 0 }
-    to { width: calc(var(--characters) * (1ch + 0.0235em)) } /* O texto se estende até 100% da largura do contêiner */
+    to { width: calc(var(--characters) * (1ch + 0.1em)) } /* O texto se estende até 100% da largura do contêiner */
 }
 
 /* A animação do cursor piscando */
@@ -28,10 +28,32 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/bg_titulo_index.jpg');
 }
 
-p, dt, dd {
+.img-home {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('../img/bg-titulo-index.jpg');
+}
+
+.img-sobre {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('../img/bg-titulo-sobre.jpg');
+}
+
+.img-simulador {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/bg-titulo-simulador.jpg');
+}
+
+.justificar-texto {
     text-align: justify;
     text-justify: inter-word;
+}
+
+.card {
+    max-width: 300px;
+    margin: 0 auto;
 }

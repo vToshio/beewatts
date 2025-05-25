@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<section class="container my-5">
-    <h1>Sobre</h1>
+<section class="d-flex align-items-center justify-content-center container-titulo img-sobre">
+    <h1 class="text-light typewriter p-3 text-center">Sobre Nós</h1>
+</section>
 
+<section class="container my-5">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et porta nibh. Aliquam congue metus sed elit finibus elementum. Ut euismod aliquam ipsum sit amet semper. Aenean gravida ornare felis et ullamcorper. Sed neque urna, commodo commodo vehicula hendrerit, faucibus sed lorem. Vestibulum tellus neque, sagittis ut enim et, placerat egestas urna. Cras at tincidunt erat. In hac habitasse platea dictumst. Integer vehicula luctus arcu. Cras id eros id nibh mattis maximus eget in nunc. Suspendisse potenti. Cras varius scelerisque dolor, vel ullamcorper ipsum pulvinar blandit. Proin ullamcorper mi condimentum lorem dignissim, sed fermentum tortor bibendum. </p>
     <p>Donec blandit egestas mauris, eget facilisis dui suscipit et. Cras non vehicula arcu. Suspendisse dui mi, molestie a massa nec, dapibus malesuada lacus. Ut eu molestie lectus. Aliquam sit amet neque ornare, luctus augue at, facilisis ligula. Fusce bibendum odio orci. Suspendisse ante nibh, elementum eu finibus ac, hendrerit non nisi. Maecenas rutrum sit amet erat non bibendum. Sed ut gravida lacus. Ut in arcu eget justo egestas lacinia. Fusce vitae risus quis nisl maximus convallis non vulputate massa. Phasellus porttitor ut sapien ut egestas. Aliquam nec maximus justo, nec efficitur metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque ultrices, orci a consectetur interdum, libero leo elementum ex, sed porttitor magna nibh eget nisl. Sed hendrerit ultricies metus, et egestas massa imperdiet eu. </p>
     <p>Nulla volutpat elit vitae leo molestie, vitae finibus turpis ornare. Pellentesque nisi enim, mollis id fermentum ut, dictum facilisis purus. Vestibulum et egestas quam, dictum pellentesque est. Integer eu consectetur felis. Maecenas posuere, ante sed cursus molestie, velit nisi congue lacus, vulputate semper lectus tortor id dolor. Phasellus quis purus id dui bibendum tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras non consequat justo. Suspendisse vitae cursus ipsum. Fusce sapien dui, condimentum pulvinar tempor in, facilisis et metus. </p>
@@ -12,5 +15,7 @@
     <p>Suspendisse sit amet porttitor arcu. Nunc posuere tincidunt nibh ut hendrerit. Nullam mattis in eros quis tincidunt. Vestibulum sed turpis eu magna condimentum vestibulum. Nam vel risus sed lorem rhoncus hendrerit sit amet eget purus. Aenean at ex ac est vestibulum posuere eget fringilla nisl. Sed augue justo, scelerisque commodo mauris sit amet, sodales posuere lectus. Quisque porta sit amet. </p>
 
 </section>
+
+<script src="{% static 'javascript/typewriter.js' %}"></script>
 
 {% endblock %}

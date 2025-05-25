@@ -3,13 +3,11 @@
 
 {% block content %}
 
-<section class="d-flex align-items-center justify-content-center container-titulo">
-    <div class="typewriter-wrapper">
-        <h1 class="text-light typewriter p-3 text-center">Energia Solar</h1>
-    </div>
+<section class="d-flex align-items-center justify-content-center container-titulo img-home">
+    <h1 class="text-light typewriter p-3 text-center">Energia Solar</h1>
 </section>
 
-<section class="container my-5 text-break">
+<section id="o-que-é?" class="container my-5 text-break justificar-texto">
     <h2 class="text-center text-warning" style="font-weight: bold;">O que é energia fotovoltaica?</h2>
     <p class="fs-5 mt-4">
         A energia fotovoltaica é a eletricidade gerada a partir da luz do sol. Quanto mais sol bate nos painéis solares, mais energia eles conseguem produzir. Essa forma de energia é uma alternativa às fontes tradicionais, sendo renovável, limpa e sustentável.
@@ -17,7 +15,7 @@
     <p class="fs-5">
         A placa de energia fotovoltaica é o equipamento que coleta a luz do sol e a transforma em eletricidade. Ela é formada por várias células solares, que fazem essa conversão da energia solar em energia elétrica.
     </p>
-    <h3 class="fs-4">
+    <h3 class="text-center fs-4">
         <strong>
             Como é produzida a energia solar?
         </strong>
@@ -28,50 +26,66 @@
         A tecnologia fotovoltaica é totalmente comprovada e confiável. Sistemas conectados à rede elétrica já vêm sendo utilizados há mais de três décadas.
     </p>
 </section>
-<section class="container my-5">
-    <h2 class="text-warning" style="font-weight: bold;">É possível produzir energia durante a noite?</h2>
+<section class="container my-5 justificar-texto">
+    <h2 class="text-center text-warning" style="font-weight: bold;">É possível produzir energia durante a noite?</h2>
     <p class="fs-5 mt-4">
         Um sistema de energia solar fotovoltaica comum não gera eletricidade à noite, já que depende da luz do sol para funcionar. No entanto, existem algumas soluções para lidar com a ausência de luz solar durante esse período:
     </p>
     <dl class="fs-5">
-        <dt>Conexão com a Rede Elétrica</dt>
+        <dt class="text-center">Conexão com a Rede Elétrica</dt>
         <dd>
             Em sistemas ligados à rede pública, a energia gerada a mais durante o dia pode ser "emprestada" para a rede. Esse excedente é compensado mais tarde: à noite ou em dias nublados, quando a produção solar é baixa ou nula, a energia necessária pode ser puxada da própria rede, como se fosse uma "bateria virtual".
         </dd>
-        <dt>Armazenamento em baterias</dt>
+        <dt class="text-center">Armazenamento em baterias</dt>
         <dd>
             Outra opção é usar baterias no sistema. Nesse caso, a energia gerada durante o dia é armazenada para ser usada à noite. As baterias guardam o excesso de eletricidade produzida quando há sol e liberam essa energia quando os painéis solares não estão gerando, garantindo o fornecimento contínuo.
         </dd>
     </dl>
 </section>
-<section class="container my-5">
-    <img src="{% static 'img/sistema_solar.gif' %}" class="d-block mx-auto img-fluid" width="500" height="490">
-    <h2 class="text-warning mt-4" style="font-weight: bold;">Tipos de sistemas fotovoltaicos</h2>
-    <p class="fs-5 mt-4">
+<section id="tipos-sistemas" class="container my-5 justificar-texto">
+    <img src="{% static 'img/sistema_solar.gif' %}" class="d-block mx-auto img-fluid my-5" width="500" height="490">
+    <h2 class="text-center text-warning my-4"><strong>Tipos de sistemas fotovoltaicos</strong></h2>
+    <p class="fs-5 my-4">
         Um sistema de energia solar fotovoltaica pode funcionar de três formas diferentes: ligado à rede elétrica (on-grid), de forma independente (off-grid) ou combinando as duas opções (sistema híbrido).
     </p>
-    <dl class="fs-5">
-        <dt>On-grid</dt>
-        <dd>
-           O sistema on-grid é conectado à rede elétrica. Durante o dia, a energia gerada pelos painéis solares é usada no imóvel, e o que sobra é enviado para a rede pública, gerando créditos que podem ser descontados na conta de luz. Esse tipo de sistema é mais usado em casas, comércios, indústrias e prédios públicos.
-        </dd>
-        <dt>Off-grid</dt>
-        <dd>
-            Esse sistema é totalmente independente da rede elétrica. A energia gerada durante o dia abastece o local diretamente e, para uso à noite, é preciso ter baterias que armazenam a eletricidade. É mais utilizado em regiões afastadas sem acesso à rede elétrica, cabanas, sítios, acampamentos, Sistemas de bombeamento de água, sinalização e áreas rurais.
-        </dd>
-        <dt>Híbrido</dt>
-        <dd>
-            O sistema híbrido une características dos modelos on-grid e off-grid. Ele é ligado à rede elétrica, mas conta com baterias e um inversor especial que garante o funcionamento dos equipamentos mesmo em caso de queda de energia. É mais usado em residências que querem segurança em caso de apagões e regiões onde a rede elétrica é instável ou com muitas falhas.
-        </dd>
-    </dl>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <img src="{% static 'img/ongrid.jpg' %}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4"><strong>On-grid</strong></h4>
+                    <p class="card-text">O sistema on-grid é conectado à rede elétrica. Durante o dia, a energia gerada pelos painéis solares é usada no imóvel, e o que sobra é enviado para a rede pública, gerando créditos que podem ser descontados na conta de luz. Esse tipo de sistema é mais usado em casas, comércios, indústrias e prédios públicos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <img src="{% static 'img/offgrid.jpg' %}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4"><strong>Off-grid</strong></h4>
+                    <p class="card-text">Esse sistema é totalmente independente da rede elétrica. A energia gerada durante o dia abastece o local diretamente e, para uso à noite, é preciso ter baterias que armazenam a eletricidade. É mais utilizado em regiões afastadas sem acesso à rede elétrica, cabanas, sítios, acampamentos, Sistemas de bombeamento de água, sinalização e áreas rurais.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <img src="{% static 'img/hibrido.jpg' %}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4"><strong>Híbrido</strong></h4>
+                    <p class="card-text">O sistema híbrido une características dos modelos on-grid e off-grid. Ele é ligado à rede elétrica, mas conta com baterias e um inversor especial que garante o funcionamento dos equipamentos mesmo em caso de queda de energia. É mais usado em residências que querem segurança em caso de apagões e regiões onde a rede elétrica é instável ou com muitas falhas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<section class="container my-5">
-    <h2 class="text-warning" style="font-weight: bold;">A energia fotovoltaica é ideal para mim?</h2>
+<section id="vantagens-desvantagens" class="container my-5 justificar-texto">
+    <h2 class="text-center text-warning" style="font-weight: bold;">A energia fotovoltaica é ideal para mim?</h2>
     <p class="fs-5">
         Se você está se perguntando se vale a pena implementar esse tipo de sistema em sua residência,
         faremos uma breve análise das vantagens e desvatagens para auxiliá-lo nessa decisão. 😉
     </p>
-    <h3 class="fs-4" style="font-weight: bold;">Vantagens</h3>
+    <h3 class="text-center fs-4" style="font-weight: bold;">Vantagens</h3>
     <ul class="fs-5">
         <li><strong>Renovável:</strong> Usa a luz solar, uma fonte de energia que nunca acaba.</li>
         <li><strong>Limpa:</strong> Não libera poluição nem gases que causam o aquecimento global durante a geração.</li>
@@ -81,7 +95,7 @@
         <li><strong>Silenciosa:</strong> Gera energia sem fazer barulho, ideal para uso em áreas urbanas.</li>
         <li><strong>Independente:</strong> Pode funcionar em locais remotos, mesmo sem conexão com a rede elétrica.</li>
     </ul>
-    <h3 class="fs-4" style="font-weight: bold;">Desvantagens</h3>
+    <h3 class="text-center fs-4" style="font-weight: bold;">Desvantagens</h3>
     <ul class="fs-5">
             <li><strong>Alto consumo na fabricação:</strong> Fabricar painéis solares exige bastante energia — em alguns casos, mais do que a energia que eles conseguem gerar ao longo do tempo.</li>
             <li><strong>Custo elevado:</strong> O custo da energia solar ainda é alto quando comparado com fontes não renováveis.</li>
