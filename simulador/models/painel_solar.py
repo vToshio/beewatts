@@ -1,5 +1,6 @@
 from django.db import models
 from simulador.validators import validar_positivo
+from .marca import Marca
 from datetime import date
 
 class PainelSolar(models.Model):
@@ -13,6 +14,11 @@ class PainelSolar(models.Model):
         max_length=50,
         null=True,
         blank=True,
+    )
+    marca = models.ForeignKey(
+        to=Marca,
+        on_delete=models.PROTECT,
+        null=True
     )
     valor = models.FloatField(
         'Valor (R$)', 
@@ -30,21 +36,13 @@ class PainelSolar(models.Model):
         null=False,
         blank=False
     )
-    altura = models.FloatField(
-        'Altura (m)',
+    eficiencia = models.FloatField(
+        'Eficiência (%)',
         validators=[
             validar_positivo,
         ],
-        null = False,
-        blank=False
-    )
-    largura = models.FloatField(
-        'Largura (m)',
-        validators=[
-            validar_positivo,
-        ],
-        null = False,
-        blank=False
+        null=True,
+        blank=True,
     )
     data_consulta = models.DateField(
         'Data de Consulta',
@@ -59,7 +57,7 @@ class PainelSolar(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        self.nome = f'{int(self.potencia)} W'
+        self.nome = f'{int(self.potencia)}W ({self.marca})'
         self.data_consulta = date.today()
         return super().save(*args, **kwargs)
     

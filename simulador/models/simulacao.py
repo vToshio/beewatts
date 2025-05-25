@@ -33,7 +33,6 @@ class Simulacao(models.Model):
         ],
         null=False,
         blank=False,
-        default=0
     )
     area_disponivel = models.FloatField(
         'Área para Instalação (m²)',

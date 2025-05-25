@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'calculadora',
+        'NAME': 'simulador',
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWD'),
         'HOST': 'localhost',

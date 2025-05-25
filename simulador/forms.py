@@ -54,7 +54,7 @@ class DadosIniciaisForm(forms.Form):
         }),
         required=True
     )
-    conta_luz = forms.IntegerField(
+    conta_luz = forms.FloatField(
         label='Conta de Luz Atual (R$)',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
@@ -68,7 +68,7 @@ class DadosIniciaisForm(forms.Form):
             'class': 'form-control',
             'placeholder': 'Esse campo é opcional',
         }),
-        required=False
+        required=False,
     )
 
     def __init__(self, *args, **kwargs):

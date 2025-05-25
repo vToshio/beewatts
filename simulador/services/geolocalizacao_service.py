@@ -27,6 +27,21 @@ class GeolocalizacaoService:
             response.raise_for_status()
             data = response.json()
 
+            if (not data):
+                query = f'{cidade.nome}, {cidade.estado.sigla}'
+                response = requests.get(
+                    cls._NOMINATIM_URL,
+                    params={
+                        'q': query,
+                        'format': 'json'
+                    },
+                    headers={
+                        'User-Agent': 'BeeWatts/1.0 (vtoshio@alunos.fho.edu.br)'
+                    }
+                )
+                response.raise_for_status()
+                data = response.json()
+
             lat = float(data[0]['lat'])
             lon = float(data[0]['lon'])
             return (lat, lon)
