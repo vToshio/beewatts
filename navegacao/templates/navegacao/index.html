@@ -26,7 +26,7 @@
         A tecnologia fotovoltaica é totalmente comprovada e confiável. Sistemas conectados à rede elétrica já vêm sendo utilizados há mais de três décadas.
     </p>
 </section>
-<section class="container my-5 justificar-texto">
+<section id="energia-noturna" class="container my-5 justificar-texto">
     <h2 class="text-center text-warning" style="font-weight: bold;">É possível produzir energia durante a noite?</h2>
     <p class="fs-5 mt-4">
         Um sistema de energia solar fotovoltaica comum não gera eletricidade à noite, já que depende da luz do sol para funcionar. No entanto, existem algumas soluções para lidar com a ausência de luz solar durante esse período:
@@ -41,9 +41,9 @@
             Outra opção é usar baterias no sistema. Nesse caso, a energia gerada durante o dia é armazenada para ser usada à noite. As baterias guardam o excesso de eletricidade produzida quando há sol e liberam essa energia quando os painéis solares não estão gerando, garantindo o fornecimento contínuo.
         </dd>
     </dl>
+    <img src="{% static 'img/sistema_solar.gif' %}" class="d-block mx-auto img-fluid my-5" width="500" height="490">
 </section>
 <section id="tipos-sistemas" class="container my-5 justificar-texto">
-    <img src="{% static 'img/sistema_solar.gif' %}" class="d-block mx-auto img-fluid my-5" width="500" height="490">
     <h2 class="text-center text-warning my-4"><strong>Tipos de sistemas fotovoltaicos</strong></h2>
     <p class="fs-5 my-4">
         Um sistema de energia solar fotovoltaica pode funcionar de três formas diferentes: ligado à rede elétrica (on-grid), de forma independente (off-grid) ou combinando as duas opções (sistema híbrido).
@@ -51,7 +51,7 @@
 
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
+            <div class="card card-home h-100">
                 <img src="{% static 'img/ongrid.jpg' %}" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><strong>On-grid</strong></h4>
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
+            <div class="card card-home h-100">
                 <img src="{% static 'img/offgrid.jpg' %}" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><strong>Off-grid</strong></h4>
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
+            <div class="card card-home h-100">
                 <img src="{% static 'img/hibrido.jpg' %}" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><strong>Híbrido</strong></h4>

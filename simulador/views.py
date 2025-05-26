@@ -66,4 +66,4 @@ def resultados(request:HttpRequest, id:UUID):
     simulacao = get_object_or_404(Simulacao, id=id)
     service = SimulacaoService(simulacao=simulacao) 
     resultados = service.calcular_viabilidade(perdas=0.14)
-    return render(request, 'simulador/resultado.html', {'simulacao': simulacao, 'resultados': resultados})
+    return render(request, 'simulador/resultado.html', {'simulacao': simulacao, 'dto': resultados})
