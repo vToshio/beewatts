@@ -3,8 +3,7 @@ from simulador.models.endereco import Endereco
 from simulador.models.estado import Estado
 from simulador.models.cidade import Cidade
 from simulador.services.geolocalizacao_service import GeolocalizacaoService, GeolocalizacaoError
-from simulador.services.irradiacao_service import IrradiacaoService, IrradianciaError
-
+from simulador.services.hsp_service import HSPService, HSPError
 class EnderecoService:
     def criar_endereco(self, cleaned: EnderecoForm) -> Endereco:
         '''
@@ -22,14 +21,14 @@ class EnderecoService:
             longitude = coordenadas[1]
 
             # Utilização da PVGIS
-            irrad_service = IrradiacaoService()
-            irradiancia = irrad_service.obter_irradiancia(latitude, longitude)
+            irrad_service = HSPService()
+            hsp = irrad_service.obter_hsp(latitude, longitude)
 
             return Endereco.objects.create(
                 cep = cleaned['cep'],
                 cidade = cidade,
                 logradouro = logradouro,
-                irradiancia = irradiancia,
+                hsp = hsp,
             )
-        except (GeolocalizacaoError, IrradianciaError) as e:
+        except (GeolocalizacaoError, HSPError) as e:
             raise e

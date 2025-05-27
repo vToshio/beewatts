@@ -3,8 +3,8 @@ from simulador.models.endereco import Endereco
 
 @admin.register(Endereco)
 class EnderecoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'cep', 'get_sigla', 'get_cidade', 'logradouro')
-    list_display_links = ('id', 'cep', 'get_sigla', 'get_cidade', 'logradouro')
+    list_display = ('id', 'cep', 'get_sigla', 'get_cidade', 'logradouro', 'hsp')
+    list_display_links = ('id', 'cep', 'get_sigla', 'get_cidade', 'logradouro', 'hsp')
     search_fields = ('cep', 'get_sigla', 'get_cidade', 'logradouro')
 
     def get_sigla(self, obj: Endereco):

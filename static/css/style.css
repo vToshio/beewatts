@@ -48,6 +48,21 @@
         url('../img/bg-titulo-simulador.jpg');
 }
 
+.aside-dados {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/aside-dados.jpg');
+    background-position: right center;
+    height: 600px;
+}
+
+.bg-endereco {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/bg-endereco.jpg');
+    background-position: center center;
+}
+
 .justificar-texto {
     text-align: justify;
     text-justify: inter-word;

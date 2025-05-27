@@ -17,9 +17,27 @@
 
     <main class="container my-5">
         <!-- Cabeçalho -->
-        <section class="text-center mb-5">
-            <h1 class="text-warning fw-bold"><i class="bi bi-sun-fill"></i> Resultado da Simulação</h1>
-            <p class="text-muted fs-5">Economize na sua conta de luz com a <strong>BeeWatts</strong>.</p>
+        <section class="w-100 d-flex mb-5 align-items-center">
+            <div class="float-start text-center mx-auto">
+                <h1 class="text-warning fw-bold"><i class="bi bi-sun-fill"></i> Resultado da Simulação</h1>
+                <p class="text-muted fs-5">Economize na sua conta de luz com a <strong>BeeWatts</strong>.</p>
+            </div>
+            <div class="float-end">
+                <div class="text-center mt-5 btn-group">
+                    <a href="" class="btn btn-outline-danger">
+                        <i class="bi bi-download"></i> Baixar PDF
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <i class="bi bi-link-45deg"></i> Copiar Link
+                    </button>
+                    <a href="{% url 'registrar_dados' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-repeat"></i> Refazer Simulação
+                    </a>
+                    <a href="{% url 'registrar_endereco' %}" class="btn btn-outline-success">
+                        <i class="bi bi-house"></i> Simular Outro Endereço
+                    </a>
+                </div>
+            </div>
         </section>
 
         <section class="row g-4">
@@ -32,10 +50,14 @@
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <ul class="list-unstyled">
                             <li><strong>Endereço:</strong> {{ simulacao.endereco }}</li>
+                            <li><strong>HSP Mensal:</strong> {{ simulacao.endereco.irradiancia }} kWh/m²/mês </li>
                             <li><strong>Concessionária:</strong> {{ simulacao.concessionaria.nome }}</li>
                             <li><strong>Conta de Luz Atual:</strong> R$ {{ simulacao.conta_luz }}</li>
                             <li><strong>Área Disponível:</strong> {{ simulacao.area_disponivel }} m²</li>
-                            <li><strong>Painel Selecionado:</strong> {{ simulacao.painel_solar.nome }}</li>
+                            <li>
+                                <strong>Painel Selecionado:</strong>
+                                <a href="{{ simulacao.painel_solar.link }}" target="_blank">{{ simulacao.painel_solar.nome }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -119,9 +141,9 @@
                                     <canvas id="grafico_energia" height="100"></canvas>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-2 mx-auto my-3">
+                            <div class="col-12 col-md-4 mx-auto my-3">
                                 <div class="d-flex flex-column align-items-center">
-                                    <ul class="">
+                                    <ul>
                                         <li>
                                             {% if dto.energia_gerada_kwh > dto.energia_consumida_kwh %}
                                                 <p class="text-center my-2">A sua geração vai exceder o seu consumo em <strong class="text-success">{{ dto.energia_gerada_kwh|sub:dto.energia_consumida_kwh|floatformat:2 }}</strong> kWh/mês!</p>
@@ -167,13 +189,6 @@
         <input type="hidden" id="area_utilizada" value="{{ dto.area_utilizada_m2 }}">
         <input type="hidden" id="conta_antiga" value="{{ simulacao.conta_luz }}">
         <input type="hidden" id="conta_nova" value="{{ dto.conta_nova }}">
-
-        <!-- Botões -->
-        <section class="text-center mt-5">
-            <a href="{% url 'iniciar_calculo' %}" class="btn btn-outline-primary me-3">
-                <i class="bi bi-arrow-repeat"></i> Refazer Simulação
-            </a>
-        </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

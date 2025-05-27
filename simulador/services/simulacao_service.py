@@ -98,7 +98,7 @@ class SimulacaoService:
         acrescimos = 2_000
 
         # 1. Obter HSP
-        hsp_mensal = self.simulacao.endereco.irradiancia 
+        hsp_mensal = self.simulacao.endereco.hsp
 
         # 2. Obter Área do Painel
         area_painel = potencia_painel / (1000 * eficiencia_painel)

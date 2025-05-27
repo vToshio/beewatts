@@ -30,9 +30,9 @@ class Endereco(models.Model):
         null=True,
         blank=True
     )
-    irradiancia = models.FloatField(
-        'Índice de Irradiância (kWh/m²/mês)',
-        null=False,
+    hsp = models.FloatField(
+        'Horas de Sol Pleno (kW/m²/mês)',
+        null=True,
         blank=False
     )
 
