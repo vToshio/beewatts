@@ -72,3 +72,23 @@
     max-width: 300px;
     margin: 0 auto;
 }
+
+.logo-nav {
+    width: 100px;
+    height: 2rem;
+}
+
+.img-logo-nav {
+    width: 50px;
+    height: 3rem;
+}
+
+.logo-footer {
+    width: 200px;
+    height: 4rem;
+}
+
+.img-logo-footer {
+    width: 7rem;
+    height: 6rem;
+}

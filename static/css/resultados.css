@@ -38,8 +38,3 @@ body {
 .btn-success:hover {
     background: linear-gradient(90deg, #64dd17, #00c853);
 }
-
-#grafico_conta {
-    max-width: 10px;
-    max-height: 10px;
-}

@@ -1,9 +1,11 @@
+{% load static %}
+
 {% block navbar %}
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark d-flex shadow shadow-lg">
     <div class="container-fluid">
-        <a class="navbar-brand mx-3" href="#">
-            <i class="bi bi-bootstrap-fill text-warning"></i>
+        <a class="navbar-brand mx-3" href="{% url 'home' %}">
+            <img src="{% static '/logo/beewatts_branco.png' %}" class="logo-nav" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
