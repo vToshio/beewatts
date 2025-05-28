@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
 from .models import Endereco, Concessionaria, PainelSolar, Simulacao
-from .services import EnderecoService, SimulacaoService, GeolocalizacaoError, IrradianciaError
+from .services import EnderecoService, SimulacaoService, GeolocalizacaoError, HSPError
 from .forms import EnderecoForm, DadosIniciaisForm
 from uuid import UUID
 
@@ -25,7 +25,7 @@ def endereco(request: HttpRequest):
                 endereco = service.criar_endereco(cleaned=form.cleaned_data)
                 request.session['cep'] = endereco.cep
                 return redirect('registrar_dados')
-            except (GeolocalizacaoError, IrradianciaError):
+            except (GeolocalizacaoError, HSPError):
                 messages.error(request, 'Erro de geolocalização ao registrar endereço, tente utilizar outro CEP')
             except Exception as e:
                 raise e
@@ -66,4 +66,4 @@ def resultados(request:HttpRequest, id:UUID):
     simulacao = get_object_or_404(Simulacao, id=id)
     service = SimulacaoService(simulacao=simulacao) 
     resultados = service.calcular_viabilidade(perdas=0.14)
-    return render(request, 'simulador/resultado.html', {'simulacao': simulacao, 'resultados': resultados})
+    return render(request, 'simulador/resultado.html', {'simulacao': simulacao, 'dto': resultados})

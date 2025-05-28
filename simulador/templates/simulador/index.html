@@ -1,13 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<header class="block header text-center shadow shadow-md" style="background-image: url('https://picsum.photos/1920/1080'); background-position: center, center;">
-    <h1 class="p-5 text-light text-bold"> Simulador de Painéis Solares </h1>
-</header>
-
-<section class="container min-vh-100 my-5">
-    <a href="{% url 'registrar_endereco' %}" class="btn btn-outline-warning">Iniciar Simulador</a>
+<section class="d-flex align-items-center justify-content-center container-titulo img-simulador">
+    <h1 class="text-light typewriter p-3 text-center">Simulador</h1>
 </section>
+
+<section class="container my-5">
+    <div class="row">
+        <!-- Explicação -->
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+            <h2 class="fw-bold text-center mb-4">Como Funciona?</h2>
+            <p class="justificar-texto">
+                Este simulador foi desenvolvido para ajudar você a entender a viabilidade de instalar um sistema de energia solar no seu imóvel. 
+                Com base em informações como seu endereço, valor da conta de energia, concessionária e painel solar desejado, o simulador estima:
+            </p>
+            <ul>
+                <li>🔋 <strong>A quantidade necessária de painéis solares;</strong></li>
+                <li>💡 <strong>A potência estimada do sistema (kWp);</strong></li>
+                <li>📉 <strong>A redução na sua conta de energia;</strong></li>
+                <li>💰 <strong>O investimento necessário;</strong></li>
+                <li>⏳ <strong>O tempo estimado de retorno do investimento (payback);</strong></li>
+                <li>📐 <strong>A área física necessária para instalação dos painéis.</strong></li>
+            </ul>
+            <p class="mt-3">
+                Preencha os dados necessários nas próximas etapas e obtenha rapidamente uma estimativa completa e personalizada.
+            </p>
+        </div>
+
+        <!-- Botão de Início -->
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <img src="{% static 'svg/lampada.svg' %}" class="img-fluid" style="width: 300px;">
+            </div>
+            <div class="text-center p-5">
+                <h2 class="fw-bold text-warning">Pronto para começar?</h2>
+
+                <a href="{% url 'registrar_endereco' %}" class="btn btn-outline-warning btn-lg mt-3 p-3">
+                    <i class="bi bi-sun"></i> Iniciar Simulação
+                </a>
+
+                <p class="mt-3 text-muted">
+                    Leva menos de 2 minutos!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="{% static 'javascript/typewriter.js' %}"></script>
 
 {% endblock %}

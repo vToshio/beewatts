@@ -1,13 +1,204 @@
-{% extends 'base.html' %}
+{% load static %}
+{% load mathfilters %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resultados | BeeWatts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'logo/logo_contorno.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/resultados.css' %}">
+</head>
 
-<h1>Resultados</h1>
+<body>
+    {% include 'partials/_navbar.html' %}
 
-<p> ID: {{ simulacao.id }} </p>
-<p> Sua nova conta mensal é de aproximadamente R${{ resultados.conta_nova }}</p>
-<p> Seu payback é de aproximadamente {{ resultados.payback_meses}} meses!</p>
+    <main class="container my-5">
+        <!-- Cabeçalho -->
+        <section class="w-100 d-flex mb-5 align-items-center">
+            <div class="float-start text-center mx-auto">
+                <h1 class="text-warning fw-bold"><i class="bi bi-sun-fill"></i> Resultado da Simulação</h1>
+                <p class="text-muted fs-5">Economize na sua conta de luz com a <strong>BeeWatts</strong>.</p>
+            </div>
+            <div class="float-end">
+                <div class="text-center mt-5 btn-group">
+                    <a href="" class="btn btn-outline-danger">
+                        <i class="bi bi-download"></i> Baixar PDF
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <i class="bi bi-link-45deg"></i> Copiar Link
+                    </button>
+                    <a href="{% url 'registrar_dados' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-repeat"></i> Refazer Simulação
+                    </a>
+                    <a href="{% url 'registrar_endereco' %}" class="btn btn-outline-success">
+                        <i class="bi bi-house"></i> Simular Outro Endereço
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<a href="{{ simulacao.painel_solar.link }}">Link para o painel solar</a>
+        <section class="row g-4">
+            <!-- Dados da Simulação -->
+            <div class="col-12 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0 text-center"><i class="bi bi-house-door-fill"></i> Dados da Simulação</h5>
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-center">
+                        <ul class="list-unstyled">
+                            <li><strong>Endereço:</strong> {{ simulacao.endereco }}</li>
+                            <li><strong>HSP Mensal:</strong> {{ simulacao.endereco.irradiancia }} kWh/m²/mês </li>
+                            <li><strong>Concessionária:</strong> {{ simulacao.concessionaria.nome }}</li>
+                            <li><strong>Conta de Luz Atual:</strong> R$ {{ simulacao.conta_luz }}</li>
+                            <li><strong>Área Disponível:</strong> {{ simulacao.area_disponivel }} m²</li>
+                            <li>
+                                <strong>Painel Selecionado:</strong>
+                                <a href="{{ simulacao.painel_solar.link }}" target="_blank">{{ simulacao.painel_solar.nome }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-{% endblock %}
+            <!-- Resultados -->
+            <div class="col-12 col-lg-9">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0 text-center"><i class="bi bi-bar-chart-line-fill"></i> Informações do Sistema</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <!--  Lista -->
+                            <div class="col-12 col-md-5">
+                                <div class="card border-0 bg-light h-100">
+                                    <div class="card-body d-flex align-items-center justify-content-center">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><strong>Nova Conta Estimada:</strong> R$ {{ dto.conta_nova }}</li>
+                                            <li><strong>Energia Gerada:</strong> {{ dto.energia_gerada_kwh }} kWh/mês</li>
+                                            <li><strong>Energia Consumida:</strong> {{ dto.energia_consumida_kwh }} kWh/mês</li>
+                                            <li><strong>Potência do Sistema:</strong> {{ dto.potencia_sistema_kwp }} kWp</li>
+                                            <li><strong>Qtd. Máxima de Painéis:</strong> {{ dto.maximo_paineis }} unidades</li>
+                                            <li><strong>Área Utilizada:</strong> {{ dto.area_utilizada_m2 }} m²</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cards em Triângulo -->
+                            <div class="col-12 col-md-7">
+                                <div class="row g-3">
+                                    <!-- Linha de cima: dois cards -->
+                                    <div class="col-6">
+                                        <div class="card text-center shadow-sm border-0 h-100">
+                                            <div class="card-body d-flex flex-column justify-content-center">
+                                                <h1 class="text-primary">{{ dto.quantidade_paineis }}</h1>
+                                                <p class="fw-bold mb-0">QUANTIDADE DE PAINÉIS</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="card text-center shadow-sm border-0 h-100">
+                                            <div class="card-body d-flex flex-column justify-content-center">
+                                                <h1 class="text-success">{{ dto.total_investimento }} R$</h1>
+                                                <p class="fw-bold mb-0">TOTAL DO INVESTIMENTO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Linha de baixo: centralizado -->
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="card text-center shadow-sm border-0" style="min-width: 250px;">
+                                            <div class="card-body d-flex flex-column justify-content-center">
+                                                <h1 class="text-warning">{{ dto.payback_meses }} meses</h1>
+                                                <p class="fw-bold mb-0">PAYBACK</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fim lado direito -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-4 mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <h5 class="mb-0 text-light text-center"><i class="bi bi-graph-up-arrow"></i> Análises</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-12 col-md-8 mx-auto my-3">
+                                <div class="d-flex flex-column align-items-center">
+                                    <h6 class="text-center fw-bold">Consumo de Energia</h6>
+                                    <canvas id="grafico_energia" height="100"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 mx-auto my-3">
+                                <div class="d-flex flex-column align-items-center">
+                                    <ul>
+                                        <li>
+                                            {% if dto.energia_gerada_kwh > dto.energia_consumida_kwh %}
+                                                <p class="text-center my-2">A sua geração vai exceder o seu consumo em <strong class="text-success">{{ dto.energia_gerada_kwh|sub:dto.energia_consumida_kwh|floatformat:2 }}</strong> kWh/mês!</p>
+                                            {% else %}
+                                                <p class="text-center my-2">O sistema não irá produzir energia suficiente para suprir o seu consumo. Irão faltar <strong class="text-danger">{{ dto.energia_consumida_kwh|sub:dto.energia_gerada_kwh|floatformat:2 }}</strong> kWh!</p>
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            <p class="text-center my-2">Ao gerar {{ dto.energia_gerada_kwh }} kWh/mês, você pode manter {{ dto.quantidade_lampadas }} lâmpadas de {{ dto.potencia_lampada }}W acesas {{ dto.horas_por_dia }} horas por dia! </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-12 col-md-4 mx-auto my-3">
+                                <h6 class="text-center fw-bold">Comparativo de Conta</h6>
+                                <canvas id="grafico_conta" height="300" class="mb-3"></canvas>
+                                {% if dto.conta_nova < simulacao.conta_luz %}
+                                    <p class="text-center">Você vai <strong class="text-success">reduzir</strong> a sua conta de luz em aproximadamente {{ dto.porcentagem_economia }}% </p>
+                                {% else %}
+                                    <p class="text-center">Sua conta de luz vai <strong class="text-danger">aumentar</strong> em {{ dto.porcentagem_economia }}%!</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-md-4 mx-auto my-3">
+                                <h6 class="text-center fw-bold">Comparativo Área</h6>
+                                <canvas id="grafico_area" height="100" class="mb-3"></canvas>
+                                {% if dto.quantidade_paineis < dto.maximo_paineis %}
+                                    <p class="text-center">Você ainda terá <strong class="text-success">{{ simulacao.area_disponivel|sub:dto.area_utilizada_m2|floatformat:2 }} m² disponível</strong>, podendo instalar mais <strong class="text-success">{{ dto.maximo_paineis|sub:dto.quantidade_paineis }} painéis!</strong></p>
+                                {% else %}
+                                    <p class="text-center">Infelizmente, você <strong class="text-danger">não tem mais espaço</strong> para a instalação de mais painéis!</p>    
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <input type="hidden" id="energia_gerada" value="{{ dto.energia_gerada_kwh }}">
+        <input type="hidden" id="energia_consumida" value="{{ dto.energia_consumida_kwh }}">
+        <input type="hidden" id="area_disponivel" value="{{ simulacao.area_disponivel }}">
+        <input type="hidden" id="area_utilizada" value="{{ dto.area_utilizada_m2 }}">
+        <input type="hidden" id="conta_antiga" value="{{ simulacao.conta_luz }}">
+        <input type="hidden" id="conta_nova" value="{{ dto.conta_nova }}">
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="{% static 'javascript/plotar_energia.js' %}"></script>
+    <script defer src="{% static 'javascript/plotar_area.js' %}"></script>
+    <script defer src="{% static 'javascript/plotar_conta.js' %}"></script>
+    
+    {% include 'partials/_footer.html' %}
+</body>
+</html>

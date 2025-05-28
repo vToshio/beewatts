@@ -1,16 +1,112 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<section class="container my-5">
-    <h1>Home</h1>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et porta nibh. Aliquam congue metus sed elit finibus elementum. Ut euismod aliquam ipsum sit amet semper. Aenean gravida ornare felis et ullamcorper. Sed neque urna, commodo commodo vehicula hendrerit, faucibus sed lorem. Vestibulum tellus neque, sagittis ut enim et, placerat egestas urna. Cras at tincidunt erat. In hac habitasse platea dictumst. Integer vehicula luctus arcu. Cras id eros id nibh mattis maximus eget in nunc. Suspendisse potenti. Cras varius scelerisque dolor, vel ullamcorper ipsum pulvinar blandit. Proin ullamcorper mi condimentum lorem dignissim, sed fermentum tortor bibendum. </p>
-    <p>Donec blandit egestas mauris, eget facilisis dui suscipit et. Cras non vehicula arcu. Suspendisse dui mi, molestie a massa nec, dapibus malesuada lacus. Ut eu molestie lectus. Aliquam sit amet neque ornare, luctus augue at, facilisis ligula. Fusce bibendum odio orci. Suspendisse ante nibh, elementum eu finibus ac, hendrerit non nisi. Maecenas rutrum sit amet erat non bibendum. Sed ut gravida lacus. Ut in arcu eget justo egestas lacinia. Fusce vitae risus quis nisl maximus convallis non vulputate massa. Phasellus porttitor ut sapien ut egestas. Aliquam nec maximus justo, nec efficitur metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque ultrices, orci a consectetur interdum, libero leo elementum ex, sed porttitor magna nibh eget nisl. Sed hendrerit ultricies metus, et egestas massa imperdiet eu. </p>
-    <p>Nulla volutpat elit vitae leo molestie, vitae finibus turpis ornare. Pellentesque nisi enim, mollis id fermentum ut, dictum facilisis purus. Vestibulum et egestas quam, dictum pellentesque est. Integer eu consectetur felis. Maecenas posuere, ante sed cursus molestie, velit nisi congue lacus, vulputate semper lectus tortor id dolor. Phasellus quis purus id dui bibendum tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras non consequat justo. Suspendisse vitae cursus ipsum. Fusce sapien dui, condimentum pulvinar tempor in, facilisis et metus. </p>
-    <p>Sed gravida imperdiet sem, vel accumsan purus dapibus nec. Nam diam nisl, aliquam eu mi posuere, mollis laoreet augue. Etiam nibh turpis, feugiat ut ex at, accumsan tempus nibh. Vivamus ultrices ante nec erat dictum, at auctor lorem tempus. Maecenas blandit aliquet metus. Vivamus posuere justo urna, at iaculis nunc pretium nec. Proin porta urna nec quam porttitor luctus. Fusce a accumsan neque. Aenean euismod nulla ac porttitor convallis. Vivamus dignissim mi sit amet diam sodales, ac blandit elit mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis aliquam maximus nisi, ut elementum lorem tempor non. Donec dapibus consectetur quam in lobortis. Donec condimentum, lectus id tincidunt mattis, ex sapien vulputate augue, non tempus orci risus sed massa. Maecenas non tristique sem. Donec vehicula mollis lacus. </p>
-    <p>Suspendisse sit amet porttitor arcu. Nunc posuere tincidunt nibh ut hendrerit. Nullam mattis in eros quis tincidunt. Vestibulum sed turpis eu magna condimentum vestibulum. Nam vel risus sed lorem rhoncus hendrerit sit amet eget purus. Aenean at ex ac est vestibulum posuere eget fringilla nisl. Sed augue justo, scelerisque commodo mauris sit amet, sodales posuere lectus. Quisque porta sit amet. </p>
-
+<section class="d-flex align-items-center justify-content-center container-titulo img-home">
+    <h1 class="text-light typewriter p-3 text-center">Energia Solar</h1>
 </section>
+
+<section id="o-que-é?" class="container my-5 text-break justificar-texto">
+    <h2 class="text-center text-warning" style="font-weight: bold;">O que é energia fotovoltaica?</h2>
+    <p class="fs-5 mt-4">
+        A energia fotovoltaica é a eletricidade gerada a partir da luz do sol. Quanto mais sol bate nos painéis solares, mais energia eles conseguem produzir. Essa forma de energia é uma alternativa às fontes tradicionais, sendo renovável, limpa e sustentável.
+    </p>
+    <p class="fs-5">
+        A placa de energia fotovoltaica é o equipamento que coleta a luz do sol e a transforma em eletricidade. Ela é formada por várias células solares, que fazem essa conversão da energia solar em energia elétrica.
+    </p>
+    <h3 class="text-center fs-4">
+        <strong>
+            Como é produzida a energia solar?
+        </strong>
+    </h3>
+    <p class="fs-5">
+        A energia solar fotovoltaica é gerada por meio de placas solares feitas com materiais semicondutores. Quando a luz do sol, composta por fótons, atinge essas placas, ela faz com que os elétrons do material se movimentem, produzindo eletricidade
+        Essa eletricidade gerada nas placas solares é enviada para o inversor solar, que tem a função de transformar a corrente contínua em corrente alternada — o tipo de energia usada nos aparelhos eletrônicos e na rede elétrica
+        A tecnologia fotovoltaica é totalmente comprovada e confiável. Sistemas conectados à rede elétrica já vêm sendo utilizados há mais de três décadas.
+    </p>
+</section>
+<section id="energia-noturna" class="container my-5 justificar-texto">
+    <h2 class="text-center text-warning" style="font-weight: bold;">É possível produzir energia durante a noite?</h2>
+    <p class="fs-5 mt-4">
+        Um sistema de energia solar fotovoltaica comum não gera eletricidade à noite, já que depende da luz do sol para funcionar. No entanto, existem algumas soluções para lidar com a ausência de luz solar durante esse período:
+    </p>
+    <dl class="fs-5">
+        <dt class="text-center">Conexão com a Rede Elétrica</dt>
+        <dd>
+            Em sistemas ligados à rede pública, a energia gerada a mais durante o dia pode ser "emprestada" para a rede. Esse excedente é compensado mais tarde: à noite ou em dias nublados, quando a produção solar é baixa ou nula, a energia necessária pode ser puxada da própria rede, como se fosse uma "bateria virtual".
+        </dd>
+        <dt class="text-center">Armazenamento em baterias</dt>
+        <dd>
+            Outra opção é usar baterias no sistema. Nesse caso, a energia gerada durante o dia é armazenada para ser usada à noite. As baterias guardam o excesso de eletricidade produzida quando há sol e liberam essa energia quando os painéis solares não estão gerando, garantindo o fornecimento contínuo.
+        </dd>
+    </dl>
+    <img src="{% static 'img/sistema_solar.gif' %}" class="d-block mx-auto img-fluid my-5" width="500" height="490">
+</section>
+<section id="tipos-sistemas" class="container my-5 justificar-texto">
+    <h2 class="text-center text-warning my-4"><strong>Tipos de sistemas fotovoltaicos</strong></h2>
+    <p class="fs-5 my-4">
+        Um sistema de energia solar fotovoltaica pode funcionar de três formas diferentes: ligado à rede elétrica (on-grid), de forma independente (off-grid) ou combinando as duas opções (sistema híbrido).
+    </p>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card card-home h-100">
+                <img src="{% static 'img/ongrid.jpg' %}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4"><strong>On-grid</strong></h4>
+                    <p class="card-text">O sistema on-grid é conectado à rede elétrica. Durante o dia, a energia gerada pelos painéis solares é usada no imóvel, e o que sobra é enviado para a rede pública, gerando créditos que podem ser descontados na conta de luz. Esse tipo de sistema é mais usado em casas, comércios, indústrias e prédios públicos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card card-home h-100">
+                <img src="{% static 'img/offgrid.jpg' %}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4"><strong>Off-grid</strong></h4>
+                    <p class="card-text">Esse sistema é totalmente independente da rede elétrica. A energia gerada durante o dia abastece o local diretamente e, para uso à noite, é preciso ter baterias que armazenam a eletricidade. É mais utilizado em regiões afastadas sem acesso à rede elétrica, cabanas, sítios, acampamentos, Sistemas de bombeamento de água, sinalização e áreas rurais.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card card-home h-100">
+                <img src="{% static 'img/hibrido.jpg' %}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4"><strong>Híbrido</strong></h4>
+                    <p class="card-text">O sistema híbrido une características dos modelos on-grid e off-grid. Ele é ligado à rede elétrica, mas conta com baterias e um inversor especial que garante o funcionamento dos equipamentos mesmo em caso de queda de energia. É mais usado em residências que querem segurança em caso de apagões e regiões onde a rede elétrica é instável ou com muitas falhas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="vantagens-desvantagens" class="container my-5 justificar-texto">
+    <h2 class="text-center text-warning" style="font-weight: bold;">A energia fotovoltaica é ideal para mim?</h2>
+    <p class="fs-5">
+        Se você está se perguntando se vale a pena implementar esse tipo de sistema em sua residência,
+        faremos uma breve análise das vantagens e desvatagens para auxiliá-lo nessa decisão. 😉
+    </p>
+    <h3 class="text-center fs-4" style="font-weight: bold;">Vantagens</h3>
+    <ul class="fs-5">
+        <li><strong>Renovável:</strong> Usa a luz solar, uma fonte de energia que nunca acaba.</li>
+        <li><strong>Limpa:</strong> Não libera poluição nem gases que causam o aquecimento global durante a geração.</li>
+        <li><strong>Modular:</strong> Pode ser adaptada a diferentes tamanhos, desde casas até grandes usinas.</li>
+        <li><strong>Baixa manutenção:</strong> Depois de instalada, exige poucos cuidados e manutenção.</li>
+        <li><strong>Sustentável:</strong> Ajuda a reduzir o uso de combustíveis fósseis e combate as mudanças climáticas.</li>
+        <li><strong>Silenciosa:</strong> Gera energia sem fazer barulho, ideal para uso em áreas urbanas.</li>
+        <li><strong>Independente:</strong> Pode funcionar em locais remotos, mesmo sem conexão com a rede elétrica.</li>
+    </ul>
+    <h3 class="text-center fs-4" style="font-weight: bold;">Desvantagens</h3>
+    <ul class="fs-5">
+            <li><strong>Alto consumo na fabricação:</strong> Fabricar painéis solares exige bastante energia — em alguns casos, mais do que a energia que eles conseguem gerar ao longo do tempo.</li>
+            <li><strong>Custo elevado:</strong> O custo da energia solar ainda é alto quando comparado com fontes não renováveis.</li>
+            <li><strong>Dependência do clima:</strong> A produção de energia depende do clima, sendo menor em dias nublados ou chuvosos.</li>
+            <li><strong>Sem produção à noite:</strong> Durante a noite, os painéis solares não produzem energia, já que não há luz solar.</li>
+            <li><strong>Baixa eficiência em regiões frias:</strong> Regiões mais distantes da linha do Equador produzem menos energia solar no inverno, devido à menor incidência de luz solar.</li>
+            <li><strong>Armazenamento ineficiente:</strong> O armazenamento da energia solar ainda não é tão eficiente quanto em outras fontes, como a hidrelétrica ou os combustíveis fósseis.</li>
+            <li><strong>Necessidade de baterias:</strong> É necessário ter um sistema de armazenamento eficiente para garantir energia quando o sol não está disponível.</li>
+    </ul>
+</section>
+
+<script src="{% static 'javascript/typewriter.js' %}"></script>
 
 {% endblock %}

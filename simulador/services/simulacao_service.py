@@ -6,12 +6,18 @@ from dataclasses import dataclass
 class SimulacaoDTO:
     conta_nova: float
     quantidade_paineis: int
+    maximo_paineis: int
     area_utilizada_m2: float
+    porcentagem_area: float
     energia_gerada_kwh: float
     energia_consumida_kwh: float
     potencia_sistema_kwp: float
     total_investimento: float
+    porcentagem_economia: float
     payback_meses: int
+    quantidade_lampadas: int
+    horas_por_dia: int
+    potencia_lampada: int
 
 class SimulacaoService:
     _percentuais_tusd = {
@@ -92,7 +98,7 @@ class SimulacaoService:
         acrescimos = 2_000
 
         # 1. Obter HSP
-        hsp_mensal = self.simulacao.endereco.irradiancia 
+        hsp_mensal = self.simulacao.endereco.hsp
 
         # 2. Obter Área do Painel
         area_painel = potencia_painel / (1000 * eficiencia_painel)
@@ -115,9 +121,9 @@ class SimulacaoService:
             min_paineis += 1
         
         qtd_paineis = min_paineis if (energia_total >= consumo_usuario) else max_paineis   
-
+        porcentagem_area = area_total * 100 / area_disponivel
         
-        # 5. Descobrir Informações
+        # 5. Descobrir Informações de Economia
         area_total = area_painel * qtd_paineis
         potencia_total = qtd_paineis * potencia_painel / 1000
         total_investimento = valor_painel * qtd_paineis + acrescimos
@@ -130,15 +136,34 @@ class SimulacaoService:
 
         economia_mensal = conta_luz_atual - conta_final
         payback = total_investimento / economia_mensal
+        
+        porcentagem_economia: float
+        if (economia_mensal < conta_luz_atual):
+            porcentagem_economia = (conta_luz_atual - conta_final) * 100 / conta_luz_atual
+        else:
+            porcentagem_economia = (conta_final - conta_luz_atual) * 100 / conta_final
 
+        # 6. Descobrir informações ecológicas
+        potencia_lampada_w = 9
+        horas_por_dia = 8
+        dias_no_mes = 30
+        consumo_lampada_kwh = potencia_lampada_w * horas_por_dia * dias_no_mes / 1000 
+        qtd_lampadas = energia_total / consumo_lampada_kwh 
+        
         return SimulacaoDTO(
             conta_nova=round(conta_final, 2),
             quantidade_paineis=int(qtd_paineis),
+            maximo_paineis=int(max_paineis),
             area_utilizada_m2=round(area_total, 2),
+            porcentagem_area=round(porcentagem_area, 2),
             energia_gerada_kwh=round(energia_total, 2),
             energia_consumida_kwh=round(consumo_usuario, 2),
             potencia_sistema_kwp=round(potencia_total, 2),
             total_investimento=round(total_investimento, 2),
-            payback_meses=int(payback)
+            porcentagem_economia=round(porcentagem_economia, 2),
+            payback_meses=int(payback),
+            quantidade_lampadas=int(qtd_lampadas),
+            horas_por_dia=horas_por_dia,
+            potencia_lampada=potencia_lampada_w
         )
         

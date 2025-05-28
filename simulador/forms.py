@@ -1,6 +1,7 @@
 from django import forms    
 from simulador.models.concessionaria import Concessionaria
 from simulador.models.painel_solar import PainelSolar
+from django.shortcuts import get_list_or_404
 
 class EnderecoForm(forms.Form):
     cep = forms.RegexField(
@@ -74,10 +75,13 @@ class DadosIniciaisForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        concessionarias = get_list_or_404(Concessionaria)
+        paineis = get_list_or_404(PainelSolar)
+
         self.fields['concessionaria_usuario'].choices = [
-            (conc.id, conc.nome) for conc in Concessionaria.objects.all()
+            (conc.id, conc.nome) for conc in concessionarias
         ]
         self.fields['painel_usuario'].choices = [
-            (painel.id, painel.nome) for painel in PainelSolar.objects.all()
+            (painel.id, painel.nome) for painel in paineis
         ]
     

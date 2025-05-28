@@ -1,13 +1,13 @@
 import requests
 
-class IrradianciaError(Exception):
+class HSPError(Exception):
     pass
 
-class IrradiacaoService:
+class HSPService:
     _PVGIS_URL:str = 'https://re.jrc.ec.europa.eu/api/v5_2/PVcalc'
 
     @classmethod
-    def obter_irradiancia(cls, lat: float, lon: float) -> float:
+    def obter_hsp(cls, lat: float, lon: float) -> float:
         '''
         Função auxiliar que consulta a API da PVGIS para obter o índice de irradiância mensal (kWh/m³/mês).
         - Em caso de erro, retorna um HTTP 500
@@ -26,4 +26,4 @@ class IrradiacaoService:
             data = response.json()
             return data['outputs']['totals']['fixed']['H(i)_m']
         except requests.RequestException as e:
-            raise IrradianciaError(f'Erro ao Obter Irradiância: {str(e)}')
+            raise HSPError(f'Erro ao Obter Irradiância: {str(e)}')

@@ -1,16 +1,56 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<section class="container my-5">
-    <h1>Sobre</h1>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et porta nibh. Aliquam congue metus sed elit finibus elementum. Ut euismod aliquam ipsum sit amet semper. Aenean gravida ornare felis et ullamcorper. Sed neque urna, commodo commodo vehicula hendrerit, faucibus sed lorem. Vestibulum tellus neque, sagittis ut enim et, placerat egestas urna. Cras at tincidunt erat. In hac habitasse platea dictumst. Integer vehicula luctus arcu. Cras id eros id nibh mattis maximus eget in nunc. Suspendisse potenti. Cras varius scelerisque dolor, vel ullamcorper ipsum pulvinar blandit. Proin ullamcorper mi condimentum lorem dignissim, sed fermentum tortor bibendum. </p>
-    <p>Donec blandit egestas mauris, eget facilisis dui suscipit et. Cras non vehicula arcu. Suspendisse dui mi, molestie a massa nec, dapibus malesuada lacus. Ut eu molestie lectus. Aliquam sit amet neque ornare, luctus augue at, facilisis ligula. Fusce bibendum odio orci. Suspendisse ante nibh, elementum eu finibus ac, hendrerit non nisi. Maecenas rutrum sit amet erat non bibendum. Sed ut gravida lacus. Ut in arcu eget justo egestas lacinia. Fusce vitae risus quis nisl maximus convallis non vulputate massa. Phasellus porttitor ut sapien ut egestas. Aliquam nec maximus justo, nec efficitur metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque ultrices, orci a consectetur interdum, libero leo elementum ex, sed porttitor magna nibh eget nisl. Sed hendrerit ultricies metus, et egestas massa imperdiet eu. </p>
-    <p>Nulla volutpat elit vitae leo molestie, vitae finibus turpis ornare. Pellentesque nisi enim, mollis id fermentum ut, dictum facilisis purus. Vestibulum et egestas quam, dictum pellentesque est. Integer eu consectetur felis. Maecenas posuere, ante sed cursus molestie, velit nisi congue lacus, vulputate semper lectus tortor id dolor. Phasellus quis purus id dui bibendum tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras non consequat justo. Suspendisse vitae cursus ipsum. Fusce sapien dui, condimentum pulvinar tempor in, facilisis et metus. </p>
-    <p>Sed gravida imperdiet sem, vel accumsan purus dapibus nec. Nam diam nisl, aliquam eu mi posuere, mollis laoreet augue. Etiam nibh turpis, feugiat ut ex at, accumsan tempus nibh. Vivamus ultrices ante nec erat dictum, at auctor lorem tempus. Maecenas blandit aliquet metus. Vivamus posuere justo urna, at iaculis nunc pretium nec. Proin porta urna nec quam porttitor luctus. Fusce a accumsan neque. Aenean euismod nulla ac porttitor convallis. Vivamus dignissim mi sit amet diam sodales, ac blandit elit mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis aliquam maximus nisi, ut elementum lorem tempor non. Donec dapibus consectetur quam in lobortis. Donec condimentum, lectus id tincidunt mattis, ex sapien vulputate augue, non tempus orci risus sed massa. Maecenas non tristique sem. Donec vehicula mollis lacus. </p>
-    <p>Suspendisse sit amet porttitor arcu. Nunc posuere tincidunt nibh ut hendrerit. Nullam mattis in eros quis tincidunt. Vestibulum sed turpis eu magna condimentum vestibulum. Nam vel risus sed lorem rhoncus hendrerit sit amet eget purus. Aenean at ex ac est vestibulum posuere eget fringilla nisl. Sed augue justo, scelerisque commodo mauris sit amet, sodales posuere lectus. Quisque porta sit amet. </p>
-
+<section class="d-flex align-items-center justify-content-center container-titulo img-sobre">
+    <h1 class="text-light typewriter p-3 text-center">Sobre Nós</h1>
 </section>
+
+<section class="container p-5 justificar-texto">
+    <div>
+        <h2 class="text-warning text-center" style="font-weight: bold;">Motivação</h2>
+        <p class="fs-5 mt-3">
+            O projeto <strong>BeeWatts</strong> surgiu com o propósito de ajudar os usuários a responderem uma pergunta comum:
+            <em>vale a pena instalar placas solares em minha residência?</em> Observando a crescente preocupação com os custos de energia elétrica e o impacto ambiental causado por fontes de energia não renováveis, desenvolvemos uma solução prática e acessível que oferece simulações personalizadas para cada usuário.
+        </p>
+        <p class="fs-5">
+            Ao permitir que as pessoas compreendam os benefícios ambientais e financeiros da energia solar fotovoltaica, buscamos
+            <strong>incentivar a adoção de fontes de energia renováveis</strong>, contribuindo assim para a preservação do meio ambiente e para um futuro mais sustentável.
+        </p>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="text-warning text-center" style="font-weight: bold;">Por que escolhemos o nome BeeWatts?</h2>
+        <p class="fs-5 mt-3">
+            O nome <strong>BeeWatts</strong> foi escolhido por representar simbolicamente a união entre a natureza e a tecnologia. A palavra "Bee" (abelha, em inglês) remete à natureza, à sustentabilidade e ao trabalho coletivo, características fundamentais para a construção de um futuro mais consciente e equilibrado. Já "Watts" refere-se à unidade de potência elétrica, diretamente ligada à energia que buscamos gerar de forma limpa por meio da tecnologia solar.
+        </p>
+        <p class="fs-5">
+            Assim como as abelhas são essenciais para o equilíbrio ambiental, o <strong>BeeWatts</strong> quer ser essencial para a transição energética dos lares brasileiros. Nosso objetivo é conscientizar, informar e facilitar o acesso à energia renovável. O nome simboliza a <strong>conexão entre ação ambiental e inovação tecnológica</strong>, refletindo os pilares que sustentam nosso projeto.
+        </p>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="text-warning text-center" style="font-weight: bold;">Sobre Nós</h2>
+        <p class="fs-5 mt-3">
+            Somos um grupo de estudantes dedicados à inovação, tecnologia e sustentabilidade. Unimos nossos conhecimentos em desenvolvimento web, sistemas de informação e energias renováveis para criar o BeeWatts:
+        </p>
+        <ul class="fs-5 list-unstyled text-center my-4">
+            <li><strong>Alison Guilherme de A. Gomez</strong></li>
+            <li><strong>Dhiogo Henrique B. Manguim</strong></li>
+            <li><strong>Lucas L. Oliveira</strong></li>
+            <li><strong>Matheus Henrique de F. Cavenaghi</strong></li>
+            <li><strong>Rodrigo P. Martins</strong></li>
+            <li><strong>Vinicius Toshio A. Hayashida</strong></li>
+        </ul>
+        <p class="fs-5">
+            Acreditamos que a tecnologia pode ser uma aliada poderosa na transformação do mundo, e o BeeWatts é o reflexo do nosso compromisso com essa missão.
+        </p>
+    </div>
+</section>
+
+
+
+<script src="{% static 'javascript/typewriter.js' %}"></script>
 
 {% endblock %}
