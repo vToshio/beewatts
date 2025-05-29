@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="shortcut icon" href="{% static 'logo/logo_contorno.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <title>Termos de Uso e Privacidade | BeeWatts</title>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-lg-2">
+                <div class="position-sticky m-5 w-75">
+                    <h2 class="fw-bold fs-2 text-center">Contéudo</h2>
+                    <ol class="fs-5 my-4">
+                        <li><a href="#aceitacao" class="text-reset">Aceitação de Termos</a></li>
+                        <li><a href="#coleta-uso" class="text-reset">Coleta e Uso de Dados Pessoais</a></li>
+                        <li><a href="#armazenamento-seguranca" class="text-reset">Armazenamento e Segurança dos Dados</a></li>
+                        <li><a href="#consentimento" class="text-reset">Consentimento do Usuário</a></li>
+                        <li><a href="#direitos" class="text-reset">Direitos do Titular dos Dados (LGPD)</a></li>
+                        <li><a href="#atualizacoes" class="text-reset">Atualizações e Alterações nos Termos</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-4 justificar-texto">
+                <div class="w-75 mx-auto">
+                    <h3 id="aceitacao" class="my-5 fs-1 fw-bold text-warning text-center">Termos de Uso e Política de Privacidade da Calculadora BeeWatts</h1>
+            
+                    <p class="fs-5 my-3">
+                        Bem-vindo(a) à calculadora BeeWatts! Ao utilizar nossa ferramenta, você concorda expressamente com estes <strong>Termos de Uso e Política de Privacidade</strong>, que detalham como suas informações são coletadas, utilizadas, armazenadas e protegidas. Nossa prioridade é garantir a sua segurança e a conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018)</strong>. Se você não concordar com qualquer parte destes termos, por favor, não utilize a calculadora BeeWatts.
+                    </p>
+            
+                    <h3 id="coleta-uso" class="fs-3 fw-bold my-3">1. Aceitação dos Termos</h3>
+                    <p class="fs-5 my-3">
+                        Ao acessar e usar a calculadora BeeWatts, você declara ter lido, compreendido e aceitado integralmente estes Termos de Uso e Política de Privacidade. Estes termos se aplicam a todos os usuários da nossa ferramenta.
+                    </p>
+            
+                    <h3 id="armazenamento-seguranca" class="fs-3 fw-bold my-3">2. Coleta e Uso de Dados Pessoais</h3>
+                    <p class="fs-5 my-3">
+                        Nossa calculadora foi desenvolvida para fornecer <strong>estimativas técnicas personalizadas</strong> sobre a incidência solar e a viabilidade de instalação de sistemas fotovoltaicos. Para isso, solicitamos as seguintes informações: seu <strong>CEP (Código de Endereçamento Postal)</strong>, o <strong>valor da sua conta de luz</strong> e a <strong>área disponível para instalação</strong>.
+                    </p>
+                    <p class="fs-5 my-3">
+                        <strong>Finalidade específica da coleta:</strong>
+                        <ul>
+                            <li>O <strong>CEP</strong> é coletado com o propósito de completar o endereço (bairro, UF e logradouro) utilizando a API do <strong>ViaCEP</strong>. A partir desse endereço, obtemos a geolocalização da rua (latitude e longitude) por meio da API do <strong>OpenStreetMap</strong>. Essas coordenadas são essenciais para calcular o Horário de Sol Pleno Mensal (HSP Mensal) da sua localidade, fundamental para a estimativa de viabilidade técnica.</li>
+                            <li>O <strong>valor da sua conta de luz</strong> é coletado com a única finalidade de realizar o cálculo da viabilidade financeira e do potencial de economia com a instalação de sistemas solares fotovoltaicos, fornecendo uma estimativa personalizada para o seu consumo.</li>
+                            <li>A <strong>área disponível para instalação</strong> (em metros quadrados ou similar) é coletada para auxiliar na determinação do tamanho ideal do sistema fotovoltaico, garantindo que as estimativas de viabilidade técnica sejam mais precisas e adequadas ao espaço físico disponível no seu imóvel.</li>
+                        </ul>
+                    </p>
+                    <p class="fs-5 my-3">
+                        <strong>Não identificação e não rastreamento:</strong> Enfatizamos que esses dados são utilizados <strong>exclusivamente para fins de simulação</strong>. A BeeWatts não tem qualquer intenção de identificar, rastrear ou criar perfis de usuários com base nos dados fornecidos. Não associamos o CEP, o endereço completo, o valor da conta de luz ou a área de instalação a outras informações pessoais que possam levar à sua identificação direta e singular.
+                    </p>
+                    <p class="fs-5 my-3">
+                        <strong>Não compartilhamento:</strong> Os dados fornecidos por você <strong>não serão compartilhados, vendidos ou alugados a terceiros não autorizados</strong> para fins de marketing, publicidade ou qualquer outra finalidade comercial. Mantemos a confidencialidade das suas informações.
+                    </p>
+            
+                    <h3 id="consentimento" class="fs-3 fw-bold my-3">3. Armazenamento e Segurança dos Dados</h3>
+                    <p class="fs-5 my-3">
+                        A BeeWatts está comprometida em adotar as <strong>melhores práticas de segurança da informação</strong> para proteger seus dados. Implementamos medidas técnicas e administrativas robustas para prevenir acessos não autorizados, vazamentos, perdas, alterações indevidas ou qualquer forma de tratamento inadequado das informações.
+                    </p>
+                    <p class="fs-5 my-3">
+                        Os dados inseridos na calculadora são armazenados de forma <strong>temporária</strong> em nossos servidores apenas pelo tempo estritamente necessário para a realização do cálculo e a apresentação dos resultados.
+                    </p>
+                    <p class="fs-5 my-3">
+                        Após a finalização da simulação, os dados são anonimizados ou excluídos de forma segura, garantindo que não haja associação permanente com informações sensíveis ou pessoais adicionais que permitam a sua identificação. Não mantemos um banco de dados permanente com os dados dos usuários.
+                    </p>
+            
+                    <h3 id="direitos" class="fs-3 fw-bold my-3">4. Consentimento do Usuário</h3>
+                    <p class="fs-5 my-3">
+                        Ao informar seu CEP, o valor da sua conta de luz e a área disponível para instalação, e prosseguir com a utilização da calculadora, você nos concede <strong>consentimento livre, informado e inequívoco</strong> para o tratamento desses dados, nos exatos termos descritos nesta Política de Privacidade. Caso você não concorde com o tratamento dos dados conforme aqui exposto, pedimos que não utilize a ferramenta.
+                    </p>
+            
+                    <h3 class="fs-3 fw-bold my-3">5. Direitos do Titular dos Dados (LGPD)</h3>
+                    <p class="fs-5 my-3">
+                        Em conformidade com a LGPD, você, como titular dos dados, possui os seguintes direitos:
+                        <ul>
+                            <li><strong>Confirmação da existência de tratamento:</strong> Você pode solicitar a confirmação de que seus dados estão sendo tratados por nós.</li>
+                            <li><strong>Acesso aos dados:</strong> Caso seus dados estejam sendo armazenados, você tem o direito de acessá-los.</li>
+                            <li><strong>Correção de dados incompletos, inexatos ou desatualizados:</strong> Se houver alguma inconsistência, você pode solicitar a correção.</li>
+                            <li><strong>Anonimização, bloqueio ou eliminação de dados desnecessários:</strong> Você pode solicitar que seus dados sejam anonimizados, bloqueados ou eliminados se forem considerados desnecessários, excessivos ou tratados em desconformidade com a LGPD.</li>
+                            <li><strong>Eliminação dos dados pessoais tratados com o consentimento:</strong> Você pode solicitar a exclusão de seus dados a qualquer momento.</li>
+                            <li><strong>Informação sobre o compartilhamento de dados:</strong> Você tem o direito de saber com quais entidades públicas e privadas a BeeWatts eventualmente compartilhou seus dados (no nosso caso, informamos que não há compartilhamento para fins comerciais).</li>
+                            <li><strong>Revogação do consentimento:</strong> Você pode retirar seu consentimento a qualquer momento. A revogação do consentimento não afetará a legalidade do tratamento realizado antes da sua retirada.</li>
+                        </ul>
+                    </p>
+                    <p class="fs-5 my-3">
+                        Para exercer qualquer um desses direitos, entre em contato com a equipe BeeWatts através dos canais de atendimento disponibilizados em nosso site oficial. Nosso time está preparado para atendê-lo(a) prontamente e com a devida atenção.
+                    </p>
+            
+                    <h3 id="atualizacoes" class="fs-3 fw-bold my-3">6. Atualizações e Alterações nos Termos</h3>
+                    <p class="fs-5 my-3">
+                        Estes Termos de Uso e Política de Privacidade poderão ser <strong>atualizados periodicamente</strong> para refletir melhorias em nossos serviços, alterações na legislação ou novas práticas de segurança. A data da "Última atualização" no final deste documento será sempre modificada para indicar a versão mais recente.
+                    </p>
+                    <p class="fs-5 my-3">
+                        Recomendamos que você revise este conteúdo com frequência para se manter informado(a) sobre como protegemos suas informações. O uso continuado da calculadora BeeWatts após quaisquer modificações indica sua aceitação dos novos termos.
+                    </p>
+            
+                    <p class="fs-5 my-5 text-center"><em>Última atualização: 28 de maio de 2025.</em></p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    {% include 'partials/_footer.html' %}
+</body>
+</html>
