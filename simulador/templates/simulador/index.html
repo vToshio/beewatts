@@ -10,38 +10,54 @@
 <section class="container my-5">
     <div class="row">
         <!-- Explicação -->
-        <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
-            <h2 class="fw-bold text-center mb-4">Como Funciona?</h2>
-            <p class="justificar-texto">
-                Este simulador foi desenvolvido para ajudar você a entender a viabilidade de instalar um sistema de energia solar no seu imóvel. 
-                Com base em informações como seu endereço, valor da conta de energia, concessionária e painel solar desejado, o simulador estima:
-            </p>
-            <ul>
-                <li>🔋 <strong>A quantidade necessária de painéis solares;</strong></li>
-                <li>💡 <strong>A potência estimada do sistema (kWp);</strong></li>
-                <li>📉 <strong>A redução na sua conta de energia;</strong></li>
-                <li>💰 <strong>O investimento necessário;</strong></li>
-                <li>⏳ <strong>O tempo estimado de retorno do investimento (payback);</strong></li>
-                <li>📐 <strong>A área física necessária para instalação dos painéis.</strong></li>
-            </ul>
-            <p class="mt-3">
-                Preencha os dados necessários nas próximas etapas e obtenha rapidamente uma estimativa completa e personalizada.
-            </p>
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center mb-3">
+            <div class="w-75 mx-auto">
+                <h3 class="fw-bold text-center mb-4 text-warning">Como Funciona?</h2>
+                <p class="fs-5">
+                    Este simulador foi desenvolvido para ajudar você a entender a viabilidade de instalar um sistema de energia solar no seu imóvel.
+                    A partir de informações como seu <strong>CEP</strong>, <strong>valor da conta de energia</strong>, <strong>área de instalação</strong>, <strong>concessionária</strong> e o <strong>modelo de painel solar</strong> escolhido, estimamos:
+                </p>
+
+                <ul class="list-group list-group-flush fs-5 my-4">
+                    <li class="list-group-item">
+                        🔋 <strong>Quantidade necessária de painéis solares</strong>
+                    </li>
+                    <li class="list-group-item">
+                        💡 <strong>Potência estimada do sistema (kWp)</strong>
+                    </li>
+                    <li class="list-group-item">
+                        📉 <strong>Redução média na sua conta de energia</strong>
+                    </li>
+                    <li class="list-group-item">
+                        💰 <strong>Investimento estimado no sistema</strong>
+                    </li>
+                    <li class="list-group-item">
+                        ⏳ <strong>Tempo estimado de retorno do investimento (Payback)</strong>
+                    </li>
+                    <li class="list-group-item">
+                        📐 <strong>Área física necessária para a instalação dos painéis</strong>
+                    </li>
+                </ul>
+
+                <p class="fs-5">
+                    Preencha os dados nas próximas etapas e receba uma <strong>estimativa completa e personalizada</strong> em poucos minutos.
+                    Ao clicar em <strong>"Iniciar Cálculo"</strong>, você concorda com os
+                    <a href="{% url 'termos' %}" class="link-underline link-underline-opacity-0 text-decoration-underline">
+                        Termos de Uso e Política de Privacidade
+                    </a>.
+                </p>
+            </div>
         </div>
 
         <!-- Botão de Início -->
-        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-            <div class="text-center">
-                <img src="{% static 'svg/lampada.svg' %}" class="img-fluid" style="width: 300px;">
-            </div>
-            <div class="text-center p-5">
-                <h2 class="fw-bold text-warning">Pronto para começar?</h2>
-
+        <div class="col-12 col-md-6 text-center">
+            <h3 class="fw-bold text-warning">Pronto para começar?</h2>
+            <img src="{% static 'svg/lampada.svg' %}" class="img-fluid mt-3" style="width: 350px;">
+            <div>
                 <a href="{% url 'registrar_endereco' %}" class="btn btn-outline-warning btn-lg mt-3 p-3">
                     <i class="bi bi-sun"></i> Iniciar Simulação
                 </a>
-
-                <p class="mt-3 text-muted">
+                <p class="text-muted mt-2">
                     Leva menos de 2 minutos!
                 </p>
             </div>

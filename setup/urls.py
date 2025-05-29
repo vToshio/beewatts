@@ -19,6 +19,6 @@ from django.urls import path, include
 from navegacao.urls import urlpatterns
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(urlpatterns))
+    path('pagina-secreta/', admin.site.urls, name='admin'),
+    path('', include(urlpatterns))  
 ]

@@ -9,4 +9,7 @@ def sobre(request: HttpRequest):
     return render(request, 'navegacao/sobre.html')
 
 def teste(request: HttpRequest):
-    return render(request, 'navegacao/teste.html', {'teste': 'variável gay'})
+    return render(request, 'navegacao/teste.html')
+
+def termo_privacidade(request: HttpRequest):
+    return render(request, 'navegacao/termo_privacidade.html')
