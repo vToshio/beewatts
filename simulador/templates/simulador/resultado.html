@@ -17,6 +17,9 @@
 <body>
     {% include 'partials/_navbar.html' %}
 
+    <!-- Toast -->
+    <section id="toast-container"></section>
+
     <main class="container my-5">
         <!-- Cabeçalho -->
         <section class="w-100 d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
@@ -34,7 +37,7 @@
                     <a href="" class="btn btn-outline-danger">
                         <i class="bi bi-download"></i> Baixar PDF
                     </a>
-                    <button type="button" class="btn btn-outline-secondary">
+                    <button id="botao-copiar-link" type="button" class="btn btn-outline-secondary">
                         <i class="bi bi-link-45deg"></i> Copiar Link
                     </button>
                     <a href="{% url 'registrar_dados' %}" class="btn btn-outline-primary">
@@ -51,22 +54,22 @@
                     <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-menu-down"></i> Ações
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item">
+                            <li class="my-2">
                                 <a href="" class="dropdown-item">
                                     <i class="bi bi-download"></i>  Baixar PDF
                                 </a>
                             </li>
-                            <li class="dropdown-item">
-                                <a href="" class="dropdown-item">
+                            <li class="my-2">
+                                <a id="anchor-copiar-link" class="dropdown-item" data-bs-toggle="popover" data-bs-content="URL copiada para a área de transferência">
                                     <i class="bi bi-link-45deg"></i>  Copiar Link
                                 </a>
                             </li>
-                            <li class="dropdown-item">
+                            <li class="my-2">
                                 <a href="{% url 'registrar_dados' %}" class="dropdown-item">
                                     <i class="bi bi-arrow-repeat"></i>  Refazer Simulação
                                 </a>
                             </li>
-                            <li class="dropdown-item">
+                            <li class="my-2">
                                 <a href="{% url 'registrar_endereco' %}" class="dropdown-item">
                                     <i class="bi bi-house"></i>  Mudar Endereço
                                 </a>
@@ -233,6 +236,7 @@
     <script defer src="{% static 'javascript/plotar_energia.js' %}"></script>
     <script defer src="{% static 'javascript/plotar_area.js' %}"></script>
     <script defer src="{% static 'javascript/plotar_conta.js' %}"></script>
+    <script defer src="{% static 'javascript/copiar_url.js' %}"></script>
     
     {% include 'partials/_footer.html' %}
 </body>
