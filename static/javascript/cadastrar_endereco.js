@@ -9,12 +9,13 @@ const registrar = document.querySelector('#btn_registrar')
 function validar_cep(cep) {
     const filtro = /^\d{8}$/;
     return filtro.test(cep);
-};
+}
 
 function limpar_campos() {
     uf.value = ''
     cidade.value = ''
     logradouro.value = ''
+    registrar.setAttribute('type', 'button')
 }
 
 cep.addEventListener('focusout', async () => {
@@ -25,36 +26,47 @@ cep.addEventListener('focusout', async () => {
         try {
             const response = await fetch(`https://viacep.com.br/ws/${valor_cep}/json/`)
             const data = await response.json()
-            
-            if (data.hasOwnProperty('cep')) {
+
+            if (!data.erro) {
                 uf.value = data['uf']
                 cidade.value = data['localidade']
                 logradouro.value = data['logradouro']
+
+                if (uf.value.trim() !== '' && cidade.value.trim() !== '') {
+                    registrar.setAttribute('type', 'submit')
+                } else {
+                    registrar.setAttribute('type', 'button')
+                    container_msg.innerHTML = '<p class="text-danger">Informações incompletas para este CEP.</p>'
+                }
+
             } else {
+                limpar_campos()
                 container_msg.innerHTML = '<p class="text-danger">CEP não encontrado!</p>'
             }
         } catch (e) {
             limpar_campos()
+            container_msg.innerHTML = '<p class="text-danger">Erro ao buscar CEP!</p>'
             console.error(e)
         }
+
     } else if (!valor_cep) {
         limpar_campos()
-        container_msg.innerHTML = '<p class="text-danger">Preencha todos os campos obrigatórios!</p>'
+        container_msg.innerHTML = '<p class="text-danger">Preencha o campo CEP!</p>'
     } else {
         limpar_campos()
-        container_msg.innerHTML = '<p class="text-danger">CEP Inválido!</p>'
+        container_msg.innerHTML = '<p class="text-danger">CEP Inválido! Digite 8 números.</p>'
     }
 })
 
 registrar.addEventListener('click', () => {
-    if (!cep.value || !uf.value || !cidade.value) {
-        container_msg.innerHTML = '<p class="text-danger">Preencha todos os campos obrigatórios!</p>'
-        limpar_campos()
+    if (registrar.getAttribute('type') === 'button') {
+        container_msg.innerHTML = '<p class="text-danger">Preencha o CEP corretamente para habilitar o cadastro!</p>'
         return
     }
 
     let spinner = document.createElement('div')
     spinner.setAttribute('class', 'd-flex justify-content-center mt-3')
     spinner.innerHTML = '<div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div>'
+    registrar.classList.add('d-none')
     container_submit.appendChild(spinner)
 })
