@@ -53,29 +53,29 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-menu-down"></i> Ações
-                        <ul class="dropdown-menu">
-                            <li class="my-2">
-                                <a href="" class="dropdown-item">
-                                    <i class="bi bi-download"></i>  Baixar PDF
-                                </a>
-                            </li>
-                            <li class="my-2">
-                                <a id="anchor-copiar-link" class="dropdown-item" data-bs-toggle="popover" data-bs-content="URL copiada para a área de transferência">
-                                    <i class="bi bi-link-45deg"></i>  Copiar Link
-                                </a>
-                            </li>
-                            <li class="my-2">
-                                <a href="{% url 'registrar_dados' %}" class="dropdown-item">
-                                    <i class="bi bi-arrow-repeat"></i>  Refazer Simulação
-                                </a>
-                            </li>
-                            <li class="my-2">
-                                <a href="{% url 'registrar_endereco' %}" class="dropdown-item">
-                                    <i class="bi bi-house"></i>  Mudar Endereço
-                                </a>
-                            </li>
-                        </ul>
                     </button>
+                    <ul class="dropdown-menu">
+                        <li class="my-2">
+                            <a href="{% url 'gerar_pdf' simulacao.id %}" class="dropdown-item">
+                                <i class="bi bi-download"></i>  Baixar PDF
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a id="anchor-copiar-link" class="dropdown-item" data-bs-toggle="popover" data-bs-content="URL copiada para a área de transferência">
+                                <i class="bi bi-link-45deg"></i>  Copiar Link
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="{% url 'registrar_dados' %}" class="dropdown-item">
+                                <i class="bi bi-arrow-repeat"></i>  Refazer Simulação
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="{% url 'registrar_endereco' %}" class="dropdown-item">
+                                <i class="bi bi-house"></i>  Mudar Endereço
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
