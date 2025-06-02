@@ -1,0 +1,207 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório - Simulação {{ simulacao.id }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 20px;
+        }
+        h1, h2, h3, h4 {
+            color: #FFA500;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header img {
+            height: 60px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin-top: 0;
+            background-color: #f5f5f5;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        ul {
+            margin: 20px;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #333;
+        }
+        .info-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .info-box {
+            flex: 1 1 200px;
+            border: 2px solid #FFA500;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .info-box h2 {
+            margin: 5px 0;
+            color: #333;
+        }
+        .footer {
+            border-top: 2px solid #FFA500;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <div class="header">
+        <div>
+            <h1><i class="bi bi-sun-fill"></i> Resultado da Simulação</h1>
+            <p><strong>BeeWatts</strong> - Energia Solar</p>
+        </div>
+    </div>
+
+    <!-- Dados da Simulação -->
+    <div class="section">
+        <div class="card">
+            <h3>Dados da Simulação</h3>
+            <ul>
+                <li><span class="highlight">Endereço:</span> {{ simulacao.endereco }}</li>
+                <li><span class="highlight">HSP Mensal:</span> {{ simulacao.endereco.hsp }} kWh/m²/mês</li>
+                <li><span class="highlight">Concessionária:</span> {{ simulacao.concessionaria.nome }}</li>
+                <li><span class="highlight">Conta de Luz Atual:</span> R$ {{ simulacao.conta_luz }}</li>
+                <li><span class="highlight">Área Disponível:</span> {{ simulacao.area_disponivel }} m²</li>
+                <li>
+                    <span class="highlight">Painel Selecionado:</span>
+                    {{ simulacao.painel_solar.nome }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Informações do Sistema -->
+    <div class="section">
+        <div class="card">
+            <h3>Informações do Sistema</h3>
+            <ul>
+                <li><span class="highlight">Nova Conta Estimada:</span> R$ {{ dto.conta_nova }}</li>
+                <li><span class="highlight">Energia Gerada:</span> {{ dto.energia_gerada_kwh }} kWh/mês</li>
+                <li><span class="highlight">Energia Consumida:</span> {{ dto.energia_consumida_kwh }} kWh/mês</li>
+                <li><span class="highlight">Potência do Sistema:</span> {{ dto.potencia_sistema_kwp }} kWp</li>
+                <li><span class="highlight">Qtd. Máxima de Painéis:</span> {{ dto.maximo_paineis }} unidades</li>
+                <li><span class="highlight">Área Utilizada:</span> {{ dto.area_utilizada_m2 }} m²</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Resumo dos Dados -->
+    <div class="section">
+        <div class="info-boxes">
+            <div class="info-box">
+                <h2>{{ dto.quantidade_paineis }}</h2>
+                <p>Quantidade de Painéis</p>
+            </div>
+            <div class="info-box">
+                <h2>R$ {{ dto.total_investimento }}</h2>
+                <p>Total do Investimento</p>
+            </div>
+            <div class="info-box">
+                <h2>{{ dto.payback_meses }} meses</h2>
+                <p>Payback</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Análises -->
+    <div class="section">
+        <div class="card">
+            <h3>Análises</h3>
+            <ul>
+                <li>
+                    {% if dto.energia_gerada_kwh > dto.energia_consumida_kwh %}
+                        Sua geração excede o consumo em <span class="highlight">
+                            {{ dto.energia_gerada_kwh|sub:dto.energia_consumida_kwh|floatformat:2 }} kWh/mês
+                        </span>.
+                    {% else %}
+                        Sua geração não supre o consumo em cerca de <span class="highlight">
+                            {{ dto.energia_gerada_kwh|mul:100|div:dto.energia_consumida_kwh|floatformat:2 }}%
+                            ({{ dto.energia_consumida_kwh|sub:dto.energia_gerada_kwh|floatformat:2 }} kWh/mês)
+                        </span>.
+                    {% endif %}
+                </li>
+                <li>
+                    {% if dto.conta_nova < simulacao.conta_luz %}
+                        Sua conta de luz reduzirá em <span class="highlight">{{ dto.porcentagem_economia }}%, de R$ {{ simulacao.conta_luz|floatformat:2 }} para R$ {{ dto.conta_nova|floatformat:2 }}</span>.
+                    {% else %}
+                        Sua conta de luz aumentará em <span class="highlight">{{ dto.porcentagem_economia }}%</span>.
+                    {% endif %}
+                </li>
+                <li>
+                    {% if dto.quantidade_paineis < dto.maximo_paineis %}
+                        Você ainda terá <span class="highlight">
+                            {{ simulacao.area_disponivel|sub:dto.area_utilizada_m2|floatformat:2 }} m²
+                        </span> disponíveis e poderá instalar mais 
+                        <span class="highlight">{{ dto.maximo_paineis|sub:dto.quantidade_paineis }} painéis</span>.
+                    {% else %}
+                        Você não possui mais espaço disponível para novos painéis.
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>Economia Acumulada</h4>
+                    <ul>
+                        <li>Em <strong>1 mês</strong>, você terá economizado aproximadamente <span class="highlight">R$ {{ dto.economia_total.1_mes|floatformat:2 }}</span>.</li>
+                        <li>Em <strong>5 meses</strong>, sua economia acumulada será de cerca de <span class="highlight">R$ {{ dto.economia_total.5_meses|floatformat:2 }}</span>.</li>
+                        <li>Em <strong>1 ano</strong>, sua economia irá acumular aproximadamente <span class="highlight">R$ {{ dto.economia_total.1_ano|floatformat:2 }}</span>.</li>
+                        <li>Em <strong>3 anos</strong>, você vai economizar cerca de <span class="highlight">R$ {{ dto.economia_total.3_anos|floatformat:2 }}</span>.</li>
+                        <li>Em <strong>5 anos</strong>, sua economia terá acumulado cerca de <span class="highlight">R$ {{ dto.economia_total.5_anos|floatformat:2 }}</span>.</li>
+                        <li>Em <strong>10 anos</strong>, sua economia totalizará aproximadamente <span class="highlight">R$ {{ dto.economia_total.10_anos|floatformat:2 }}</span>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Uso Prático</h4>
+                    <p>Com uma geração média mensal de <span class="highlight">{{ dto.energia_gerada_kwh }} kWh</span>, você poderá:</p>
+                    <ul>
+                        <li>Manter <strong>{{ dto.uso_pratico.num_lampadas }}</strong> lâmpadas acesas por 8 horas por dia.</li>
+                        <li>Manter <span class="highlight">{{ dto.uso_pratico.num_geladeiras }}</span> geladeiras funcionando 24 horas por dia.</li>
+                        <li>Realizar até <span class="highlight">{{ dto.uso_pratico.num_lavagens }}</span> ciclos de lavagem de roupas.</li>
+                        <li>Carregar um carro elétrico para percorrer aproximadamente <span class="highlight">{{ dto.uso_pratico.autonomia_carro }} km</span> por mês.</li>
+                    </ul>  
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        Relatório gerado automaticamente - BeeWatts Energia Solar
+    </div>
+
+</body>
+</html>

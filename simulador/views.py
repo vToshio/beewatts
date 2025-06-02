@@ -1,10 +1,14 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from .models import Endereco, Concessionaria, PainelSolar, Simulacao
 from .services import EnderecoService, SimulacaoService, GeolocalizacaoError, HSPError
 from .forms import EnderecoForm, DadosIniciaisForm
 from uuid import UUID
+from wkhtmltopdf.views import PDFTemplateResponse
+from django.template.loader import get_template
+
+from django.template.loader import render_to_string
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -67,3 +71,25 @@ def resultados(request:HttpRequest, id:UUID):
     service = SimulacaoService(simulacao=simulacao) 
     resultados = service.calcular_viabilidade(perdas=0.14)
     return render(request, 'simulador/resultado.html', {'simulacao': simulacao, 'dto': resultados})
+
+def gerar_pdf(request: HttpRequest, id:UUID):
+    simulacao = get_object_or_404(Simulacao, id=id)
+    service = SimulacaoService(simulacao=simulacao) 
+    resultados = service.calcular_viabilidade(perdas=0.14)
+
+    contexto = {
+        'simulacao': simulacao,
+        'dto': resultados,
+    }
+    
+    return PDFTemplateResponse(
+        request=request,
+        template='simulador/pdf.html',
+        filename=f'RELATORIO_{id}.pdf',
+        context=contexto,
+        show_content_in_browser=False,
+        cmd_options={
+            'quiet': None,
+            'enable-local-file-access': True,
+        }
+    )

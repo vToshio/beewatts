@@ -34,7 +34,7 @@
 
             <div class="text-center d-none d-lg-flex">
                 <div class="btn-group flex-wrap">
-                    <a href="" class="btn btn-outline-danger">
+                    <a href="{% url 'gerar_pdf' simulacao.id %}" class="btn btn-outline-danger">
                         <i class="bi bi-download"></i> Baixar PDF
                     </a>
                     <button id="botao-copiar-link" type="button" class="btn btn-outline-secondary">
@@ -79,6 +79,7 @@
                 </div>
             </div>
         </section>
+
 
         <section class="row g-4">
             <!-- Dados da Simulação -->
@@ -160,7 +161,56 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Fim lado direito -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-4 mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-info">
+                        <h5 class="mb-0 text-white text-center">
+                            <i class="bi bi-currency-dollar"></i> Economia e Uso Prático
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <!-- Economia Acumulada -->
+                            <div class="col-12 col-md-6">
+                                <h4 class="text-center fw-bold">Economia Acumulada</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Em <strong>1 mês</strong>, você terá economizado aproximadamente <span class="text-success">R$ {{ dto.economia_total.1_mes|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>5 meses</strong>, sua economia acumulada será de cerca de <span class="text-success">R$ {{ dto.economia_total.5_meses|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>1 ano</strong>, sua economia irá acumular aproximadamente <span class="text-success">R$ {{ dto.economia_total.1_ano|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>3 anos</strong>, você vai economizar cerca de <span class="text-success">R$ {{ dto.economia_total.3_anos|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>5 anos</strong>, sua economia terá acumulado cerca de <span class="text-success">R$ {{ dto.economia_total.5_anos|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>10 anos</strong>, sua economia totalizará aproximadamente <span class="text-success">R$ {{ dto.economia_total.10_anos|floatformat:2 }}</span>.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Uso Prático -->
+                            <div class="col-12 col-md-6">
+                                <h4 class="text-center fw-bold">Uso Prático da Energia Gerada</h4>
+                                <p class="text-center">
+                                    Com uma geração média mensal de <span class="text-primary fw-bold">{{ dto.energia_gerada_kwh }} kWh</span>, você poderá:
+                                </p>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Manter <strong>{{ dto.uso_pratico.num_lampadas }}</strong> lâmpadas acesas por 8 horas por dia.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Manter <strong>{{ dto.uso_pratico.num_geladeiras }}</strong> geladeiras funcionando 24 horas por dia.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Realizar até <strong>{{ dto.uso_pratico.num_lavagens }}</strong> ciclos de lavagem de roupas.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Carregar um carro elétrico para percorrer aproximadamente <strong>{{ dto.uso_pratico.autonomia_carro }} km</strong> por mês.
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -171,32 +221,26 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-warning">
-                        <h5 class="mb-0 text-light text-center"><i class="bi bi-graph-up-arrow"></i> Análises</h5>
+                        <h5 class="mb-0 text-light text-center"><i class="bi bi-graph-up-arrow"></i> Gráficos</h5>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-center align-items-center">
-                            <div class="col-12 col-md-8 mx-auto my-3">
                                 <div class="d-flex flex-column align-items-center">
                                     <h6 class="text-center fw-bold">Consumo de Energia</h6>
                                     <canvas id="grafico_energia" height="100"></canvas>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-4 mx-auto my-3">
-                                <div class="d-flex flex-column align-items-center">
-                                    <ul>
-                                        <li>
-                                            {% if dto.energia_gerada_kwh > dto.energia_consumida_kwh %}
-                                                <p class="text-center my-2">A sua geração vai exceder o seu consumo em <strong class="text-success">{{ dto.energia_gerada_kwh|sub:dto.energia_consumida_kwh|floatformat:2 }}</strong> kWh/mês!</p>
-                                            {% else %}
-                                                <p class="text-center my-2">O sistema não irá produzir energia suficiente para suprir o seu consumo. Irão faltar <strong class="text-danger">{{ dto.energia_consumida_kwh|sub:dto.energia_gerada_kwh|floatformat:2 }}</strong> kWh!</p>
-                                            {% endif %}
-                                        </li>
-                                        <li>
-                                            <p class="text-center my-2">Ao gerar {{ dto.energia_gerada_kwh }} kWh/mês, você pode manter {{ dto.quantidade_lampadas }} lâmpadas de {{ dto.potencia_lampada }}W acesas {{ dto.horas_por_dia }} horas por dia! </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                <p class="text-center my-4">
+                                    {% if dto.energia_gerada_kwh > dto.energia_consumida_kwh %}
+                                        Sua geração excede o consumo em <strong class="text-success">
+                                            {{ dto.energia_gerada_kwh|sub:dto.energia_consumida_kwh|floatformat:2 }} kWh/mês
+                                        </strong>
+                                    {% else %}
+                                        Sua geração não supre o consumo em cerca de <strong class="text-danger">
+                                            {{ dto.energia_gerada_kwh|mul:100|div:dto.energia_consumida_kwh|floatformat:2 }}%
+                                            ({{ dto.energia_consumida_kwh|sub:dto.energia_gerada_kwh|floatformat:2 }} kWh/mês)
+                                        </strong>.
+                                    {% endif %}
+                                </p>
                         </div>
                         <div class="row d-flex justify-content-center align-items-center">
                             <div class="col-12 col-md-4 mx-auto my-3">

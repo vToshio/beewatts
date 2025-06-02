@@ -5,6 +5,7 @@ from dataclasses import dataclass
 @dataclass
 class SimulacaoDTO:
     conta_nova: float
+    economia_total: dict[str, float]
     quantidade_paineis: int
     maximo_paineis: int
     area_utilizada_m2: float
@@ -15,9 +16,7 @@ class SimulacaoDTO:
     total_investimento: float
     porcentagem_economia: float
     payback_meses: int
-    quantidade_lampadas: int
-    horas_por_dia: int
-    potencia_lampada: int
+    uso_pratico: dict[str, int]
 
 class SimulacaoService:
     _percentuais_tusd = {
@@ -87,6 +86,39 @@ class SimulacaoService:
 
         return valor_liquido
 
+    def calcular_economia(self, economia_mensal: float) -> dict[str, float]:
+        economia_total = {
+            '1_mes': economia_mensal,
+            '5_meses': economia_mensal * 5,
+            '1_ano': economia_mensal * 12,
+            '3_anos': economia_mensal * 36,
+            '5_anos': economia_mensal * 60,
+            '10_anos': economia_mensal * 120 
+        }
+        return economia_total
+    
+    def calcular_uso_pratico(self, energia_mensal_kwh: float) -> dict[str, int]:
+        potencia_lampada_w = 9
+        horas_lampada_dia = 8
+        dias_no_mes = 30
+        consumo_lampada_kwh = (potencia_lampada_w * horas_lampada_dia * dias_no_mes) / 1000 
+
+        geladeira_kwh_dia = 1.8  
+        maquina_lavar_kwh_ciclo = 0.75
+        carro_eletrico_kwh_por_km = 7 
+
+        num_lampadas = energia_mensal_kwh / consumo_lampada_kwh # 8 horas por dia ligada
+        num_geladeiras = energia_mensal_kwh / geladeira_kwh_dia # 24 horas por dia ligada
+        num_lavagens = energia_mensal_kwh / maquina_lavar_kwh_ciclo # Consumo por ciclo
+        autonomia_carro = energia_mensal_kwh / carro_eletrico_kwh_por_km # Quantos km vai rodar 
+
+        return {
+            'num_lampadas': int(num_lampadas),
+            'num_geladeiras': int(num_geladeiras),
+            'num_lavagens': int(num_lavagens),
+            'autonomia_carro': int(autonomia_carro),
+        }
+
     def calcular_viabilidade(self, perdas: float) -> SimulacaoDTO:
         '''Função que calcula a viabilidade da implementação de um determinado painel solar com base nos dados fornecidos pelo usuário (Simulacao). '''
         eficiencia_painel = self.simulacao.painel_solar.eficiencia / 100
@@ -136,7 +168,8 @@ class SimulacaoService:
 
         economia_mensal = conta_luz_atual - conta_final
         payback = total_investimento / economia_mensal
-        
+        economia_total = self.calcular_economia(economia_mensal)
+
         porcentagem_economia: float
         if (economia_mensal < conta_luz_atual):
             porcentagem_economia = (conta_luz_atual - conta_final) * 100 / conta_luz_atual
@@ -144,14 +177,11 @@ class SimulacaoService:
             porcentagem_economia = (conta_final - conta_luz_atual) * 100 / conta_final
 
         # 6. Descobrir informações ecológicas
-        potencia_lampada_w = 9
-        horas_por_dia = 8
-        dias_no_mes = 30
-        consumo_lampada_kwh = potencia_lampada_w * horas_por_dia * dias_no_mes / 1000 
-        qtd_lampadas = energia_total / consumo_lampada_kwh 
+        uso_pratico = self.calcular_uso_pratico(energia_total)
         
         return SimulacaoDTO(
             conta_nova=round(conta_final, 2),
+            economia_total=economia_total,
             quantidade_paineis=int(qtd_paineis),
             maximo_paineis=int(max_paineis),
             area_utilizada_m2=round(area_total, 2),
@@ -162,8 +192,6 @@ class SimulacaoService:
             total_investimento=round(total_investimento, 2),
             porcentagem_economia=round(porcentagem_economia, 2),
             payback_meses=int(payback),
-            quantidade_lampadas=int(qtd_lampadas),
-            horas_por_dia=horas_por_dia,
-            potencia_lampada=potencia_lampada_w
+            uso_pratico=uso_pratico
         )
         
