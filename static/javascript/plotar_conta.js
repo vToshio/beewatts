@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const conta_nova = parseFloat(document.getElementById('conta_nova').value)
     const ctx_conta = document.getElementById('grafico_conta').getContext('2d')
     
-    console.log(conta_antiga, conta_nova, ctx_conta)
-
     let grafico_conta = new Chart(ctx_conta, {
         type: 'doughnut',
         data: {
