@@ -63,6 +63,22 @@
     background-position: center center;
 }
 
+.bg-erro-lg {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/erro_img.jpg');
+    background-position: center center;
+    height: 600px;
+}
+
+.bg-erro-sm {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/erro_img.jpg');
+    background-position: center center;
+    height: 250px;
+}
+
 .justificar-texto {
     text-align: justify;
     text-justify: inter-word;

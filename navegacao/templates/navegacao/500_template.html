@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="w-100">
+    <div class="row d-md-none bg-erro-sm"></div>
+    <div class="row align-items-center justify-content-center my-md-0 my-5">
+        <!-- Texto -->
+        <div class="col w-100 text-center">
+            <div class="d-flex justify-content-center align-items-center text-danger mb-3">
+                <i class="bi bi-x-circle-fill fs-1 me-3"></i>
+                <h1 class="fw-bold fs-2 m-0">Erro Interno de Servidor</h1>
+            </div>
+            <p class="mx-auto fs-4 mb-3 w-75">
+                Tente acessar novamente em outro horário. Caso ela ainda esteja inacessível, entre em contato para reportar o erro!
+            </p>
+        </div>
+
+        <!-- Imagem ou background -->
+        <div class="col d-none d-md-flex bg-erro-lg">
+        </div>
+    </div>
+</section>
+
+{% endblock %}
