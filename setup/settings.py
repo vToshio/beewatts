@@ -41,9 +41,9 @@ INTERNAL_IPS = [
     'localhost:8000',
 ]
 
-CSRF_TRUSTED_ORIGIN = [
-    'beewatts.com.br',
-    'beewatts.up.railway.app'
+CSRF_TRUSTED_ORIGINS = [
+    'https://beewatts.com.br',
+    'https://beewatts.up.railway.app'
 ]
 
 # Application definition
