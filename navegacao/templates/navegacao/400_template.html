@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="w-100">
+    <div class="row d-md-none bg-erro-sm"></div>
+    <div class="row align-items-center justify-content-center my-md-0 my-5">
+        <div class="col-12 col-md-8 text-center w-50 mx-5"> 
+            <div class="d-flex justify-content-center align-items-center text-danger mb-3">
+                <i class="bi bi-exclamation-triangle-fill fs-1 me-3"></i>
+                <h1 class="fw-bold fs-2 m-0">Requisição Inválida</h1>
+            </div>
+            <p class="mx-auto fs-8 mb-4 w-75"> 
+                Ops! Parece que sua solicitação não pôde ser entendida pelo nosso servidor. Isso geralmente acontece quando há um problema com a forma como a requisição foi enviada.
+            </p>
+            
+            <div class="mt-5">
+                <ul class="justificar-texto mx-auto">
+                    <li class="mb-2 fs-7"><strong>Verifique a URL:</strong> Dê uma olhada se você digitou o endereço corretamente. Pequenos erros de digitação podem causar isso.</li>
+                    <li class="mb-2 fs-7"><strong>Tente novamente:</strong> Às vezes, um simples recarregamento da página ou uma nova tentativa pode resolver.</li>
+                    <li class="mb-2 fs-7"><strong>Limpe o cache e os cookies:</strong> Se o problema persistir, pode ser que seu navegador esteja guardando informações antigas que estão causando o conflito.</li>
+                    <li class="mb-2 fs-7"><strong>Entre em contato conosco:</strong> Se nada disso funcionar, por favor, nos informe sobre o problema, e faremos o possível para ajudar!</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col d-none d-md-flex bg-erro-lg">
+        </div>
+    </div>
+</section>
+
+{% endblock %}

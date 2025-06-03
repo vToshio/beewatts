@@ -23,5 +23,7 @@ urlpatterns = [
     path('', include(urlpatterns))  
 ]
 
-handler404 = 'navegacao.views.erro_404'
-handler500 = 'navegacao.views.erro_500'
+handler400 = 'navegacao.views.requisicao_invalida'
+handler403 = 'navegacao.views.acesso_proibido'
+handler404 = 'navegacao.views.pagina_nao_encontrada'
+handler500 = 'navegacao.views.erro_interno'

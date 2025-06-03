@@ -14,8 +14,14 @@ def teste(request: HttpRequest):
 def termo_privacidade(request: HttpRequest):
     return render(request, 'navegacao/termo_privacidade.html')
 
-def erro_404(request: HttpRequest, exception):
+def requisicao_invalida(request: HttpRequest, exception):
+    return render(request, 'navegacao/400_template.html')
+
+def acesso_proibido(request: HttpRequest, exception):
+    return render(request, 'navegacao/403_template.html')
+
+def pagina_nao_encontrada(request: HttpRequest, exception):
     return render(request, 'navegacao/404_template.html')
 
-def erro_500(request: HttpRequest):
+def erro_interno(request: HttpRequest):
     return render(request, 'navegacao/500_template.html')
