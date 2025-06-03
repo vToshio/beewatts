@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python312", "libpq", "wkhtmltopdf", "gcc", "pkg-config"]
+nixPkgs = ["python312", "postgresql", "wkhtmltopdf", "gcc", "pkg-config"]
 
 [phases.build]
 cmds = [
