@@ -1,0 +1,94 @@
+.typewriter {
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    overflow: hidden;
+    border-right: 3px solid orange; 
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: 
+        typing steps(var(--characters)) forwards,
+        blink-caret .75s step-end infinite;
+    width: 0; 
+    font-size: 3em; 
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: calc(var(--characters) * (1ch + 0.1em)) } /* O texto se estende até 100% da largura do contêiner */
+}
+
+/* A animação do cursor piscando */
+@keyframes blink-caret {
+    from, to { border-color: transparent } /* Cursor invisível */
+    50% { border-color: orange; } /* Cursor visível */
+}
+
+.container-titulo {
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.img-home {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('../img/bg-titulo-index.jpg');
+}
+
+.img-sobre {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('../img/bg-titulo-sobre.jpg');
+}
+
+.img-simulador {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/bg-titulo-simulador.jpg');
+}
+
+.aside-dados {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/aside-dados.jpg');
+    background-position: right center;
+    height: 600px;
+}
+
+.bg-endereco {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/bg-endereco.jpg');
+    background-position: center center;
+}
+
+.justificar-texto {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.card-home {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.logo-nav {
+    width: 100px;
+    height: 2rem;
+}
+
+.img-logo-nav {
+    width: 50px;
+    height: 3rem;
+}
+
+.logo-footer {
+    width: 200px;
+    height: 4rem;
+}
+
+.img-logo-footer {
+    width: 7rem;
+    height: 6rem;
+}
