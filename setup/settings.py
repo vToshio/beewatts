@@ -32,7 +32,8 @@ DEBUG = bool(os.getenv('DEBUG'))
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'beewatts.com.br'
+    'beewatts.com.br',
+    'beewatts.up.railway.app',
 ]
 
 INTERNAL_IPS = [
@@ -41,7 +42,8 @@ INTERNAL_IPS = [
 ]
 
 CSRF_TRUSTED_ORIGIN = [
-    'beewatts.com.br'
+    'beewatts.com.br',
+    'beewatts.up.railway.app'
 ]
 
 # Application definition
