@@ -1,8 +1,10 @@
 [phases.setup]
-nixPkgs = ["python313", "wkhtmltopdf"]
+nixPkgs = ["python312", "libpq", "wkhtmltopdf", "gcc", "pkg-config"]
 
 [phases.build]
-cmds = ["pip install -r requirements.txt"]
+cmds = [
+  "pip install -r requirements.txt"
+]
 
 [phases.start]
-cmd = "gunicorn meuprojeto.wsgi:application --bind 0.0.0.0:$PORT"
+cmd = "gunicorn setup.wsgi:application --bind 0.0.0.0:$PORT"
