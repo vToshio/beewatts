@@ -22,3 +22,6 @@ urlpatterns = [
     path('pagina-secreta/', admin.site.urls, name='admin'),
     path('', include(urlpatterns))  
 ]
+
+handler404 = 'navegacao.views.erro_404'
+handler500 = 'navegacao.views.erro_500'

@@ -13,3 +13,9 @@ def teste(request: HttpRequest):
 
 def termo_privacidade(request: HttpRequest):
     return render(request, 'navegacao/termo_privacidade.html')
+
+def erro_404(request: HttpRequest, exception):
+    return render(request, 'navegacao/404_template.html')
+
+def erro_500(request: HttpRequest, exception):
+    return render(request, 'navegacao/500_template.html')
