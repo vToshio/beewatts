@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="w-100">
+    <div class="row d-md-none bg-erro-sm"></div>
+    <div class="row align-items-center justify-content-center my-md-0 my-5">
+        <div class="col-12 col-md-8 text-center w-50 mx-5"> 
+            <div class="d-flex justify-content-center align-items-center text-danger mb-3">
+                <i class="bi bi-exclamation-triangle-fill fs-1 me-3"></i>
+                <h1 class="fw-bold fs-2 m-0">Acesso Proibido</h1>
+            </div>
+            <p class="mx-auto fs-8 mb-4 w-75"> 
+                Parece que você não tem permissão para acessar esta página ou recurso. Entendemos que isso pode ser frustrante, mas por motivos de segurança, o acesso a este conteúdo é restrito.
+            </p>
+            <div class="mt-5">
+                <ul class="justificar-texto mx-auto">
+                    <li class="mb-2 fs-7"><strong>Verifique se você está logado:</strong> Se esta é uma área restrita a usuários, certifique-se de que você está logado com as credenciais corretas.</li>
+                    <li class="mb-2 fs-7"><strong>Volte para a página anterior:</strong> Você pode tentar navegar de volta para a página de onde veio e tentar um caminho diferente.</li>
+                    <li class="mb-2 fs-7"><strong>Acesse a página inicial:</strong> Que tal começar de novo pela nossa <a href="/">página principal</a>?</li>
+                    <li class="mb-2 fs-7"><strong>Entre em contato conosco:</strong> Se você acredita que deveria ter acesso a este conteúdo, por favor, <a href="mailto:seuemail@example.com">entre em contato</a> para que possamos verificar sua situação.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col d-none d-md-flex bg-erro-lg">
+        </div>
+    </div>
+</section>
+
+{% endblock %}
