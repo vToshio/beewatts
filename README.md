@@ -3,7 +3,7 @@
 Este projeto é uma aplicação web desenvolvida em Django para simulação de viabilidade de sistemas de energia solar fotovoltaica. O sistema permite ao usuário inserir dados sobre consumo de energia, localização, área disponível e características dos painéis solares, retornando informações como economia estimada, quantidade de painéis necessários, investimento, payback e uso prático da energia gerada.
 
 ## Tecnologias Utilizadas
-- Python 3.13
+- Python 3.13.3
 - Django 5.2
 - Gunicorn
 - Whitenoise
@@ -13,23 +13,37 @@ Este projeto é uma aplicação web desenvolvida em Django para simulação de v
 ## Instalação e Execução Local
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
-   cd projeto-deploy
+   git clone https://github.com/vToshio/beewatts
+   cd beewatts
    ```
 2. Crie e ative um ambiente virtual:
    ```bash
    python -m venv venv
+
+   # Linux
    source venv/bin/activate
+
+   # Windows
+   .\venv\Scripts\Activate.ps1
    ```
-3. Instale as dependências:
+
+3. Configure o arquivo .env:
+
+```
+SECRET_KEY=<insira-sua-secret-key>
+DB_URL=<insira-a-URL-do-Postgres>
+DEBUG=<1-ou-0>
+```
+
+4. Instale as dependências:
    ```bash
    pip install -r requirements.txt
    ```
-4. Execute as migrações:
+5. Execute as migrações:
    ```bash
    python manage.py migrate
    ```
-5. Inicie o servidor de desenvolvimento:
+6. Inicie o servidor de desenvolvimento:
    ```bash
    python manage.py runserver
    ```
