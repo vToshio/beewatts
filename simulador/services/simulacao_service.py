@@ -103,9 +103,9 @@ class SimulacaoService:
         dias_no_mes = 30
         consumo_lampada_kwh = (potencia_lampada_w * horas_lampada_dia * dias_no_mes) / 1000 
 
-        geladeira_kwh_dia = 1.8  
+        geladeira_kwh_dia = 30
         maquina_lavar_kwh_ciclo = 0.75
-        carro_eletrico_kwh_por_km = 7 
+        carro_eletrico_kwh_por_km = 0.15
 
         num_lampadas = energia_mensal_kwh / consumo_lampada_kwh # 8 horas por dia ligada
         num_geladeiras = energia_mensal_kwh / geladeira_kwh_dia # 24 horas por dia ligada
