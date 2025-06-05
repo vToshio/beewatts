@@ -91,14 +91,21 @@
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <ul class="list-unstyled">
                             <li><strong>Endereço:</strong> {{ simulacao.endereco }}</li>
-                            <li><strong>HSP Mensal:</strong> {{ simulacao.endereco.hsp }} kWh/m²/mês </li>
-                            <li><strong>Concessionária:</strong> {{ simulacao.concessionaria.nome }}</li>
-                            <li><strong>Conta de Luz Atual:</strong> R$ {{ simulacao.conta_luz }}</li>
+                            <li><strong>HSP Mensal:</strong> {{ simulacao.endereco.hsp }} horas/mês </li>
                             <li><strong>Área Disponível:</strong> {{ simulacao.area_disponivel }} m²</li>
+                            <li><hr></li>
+                            <li><strong>Concessionária:</strong> {{ simulacao.concessionaria.nome }}</li>
+                            <li><strong>TE:</strong> R$ {{ simulacao.concessionaria.te }}</li>
+                            <li><strong>TUSD:</strong> R$ {{ simulacao.concessionaria.tusd}}</li>
+                            <li><strong>Tarifa:</strong> R$ {{ simulacao.concessionaria.te|addition:simulacao.concessionaria.tusd|floatformat:5 }}</li>
+                            <li><strong>Conta de Luz Atual:</strong> R$ {{ simulacao.conta_luz }}</li>
+                            <li><hr></li>
                             <li>
                                 <strong>Painel Selecionado:</strong>
                                 <a href="{{ simulacao.painel_solar.link }}" target="_blank">{{ simulacao.painel_solar.nome }}</a>
                             </li>
+                            <li><strong>Valor do Painel:</strong> R$ {{ simulacao.painel_solar.valor }}</li>
+                            <li><strong>Eficiência:</strong> {{ simulacao.painel_solar.eficiencia }}%</li>
                         </ul>
                     </div>
                 </div>
@@ -117,12 +124,19 @@
                                 <div class="card border-0 bg-light h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
                                         <ul class="list-unstyled mb-0">
-                                            <li><strong>Nova Conta Estimada:</strong> R$ {{ dto.conta_nova }}</li>
+                                            <li><strong>Potência do Sistema:</strong> {{ dto.potencia_sistema_kwp }} kWp</li>
+                                            <li><strong>Área Utilizada:</strong> {{ dto.area_utilizada_m2 }} m²</li>
+                                            <li><strong>Qtd. Máxima de Painéis:</strong> {{ dto.maximo_paineis }} unidades</li>
                                             <li><strong>Energia Gerada:</strong> {{ dto.energia_gerada_kwh }} kWh/mês</li>
                                             <li><strong>Energia Consumida:</strong> {{ dto.energia_consumida_kwh }} kWh/mês</li>
-                                            <li><strong>Potência do Sistema:</strong> {{ dto.potencia_sistema_kwp }} kWp</li>
-                                            <li><strong>Qtd. Máxima de Painéis:</strong> {{ dto.maximo_paineis }} unidades</li>
-                                            <li><strong>Área Utilizada:</strong> {{ dto.area_utilizada_m2 }} m²</li>
+                                            <li><hr></li>
+                                            <li><strong>ICMS:</strong> R$ {{ dto.conta_nova.tarifas.icms|floatformat:2 }}</li>
+                                            <li><strong>PIS + COFINS:</strong> R$ {{ dto.conta_nova.tarifas.pis_cofins|floatformat:2 }} </li>
+                                            <li><strong>COSIP:</strong> R$ {{ dto.conta_nova.tarifas.cosip|floatformat:2 }}</li>
+                                            <li><hr></li>
+                                            <li><strong>Conta Bruta:</strong> R$ {{ dto.conta_nova.valor_bruto|floatformat:2 }}</li>
+                                            <li><strong>Tarifas Adicionais:</strong> R$ {{ dto.conta_nova.tarifas.total|floatformat:2 }}</li>
+                                            <li><strong>Conta Líquida:</strong> R$ {{ dto.conta_nova.valor_liquido|floatformat:2 }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -130,7 +144,7 @@
 
                             <!-- Cards em Triângulo -->
                             <div class="col-12 col-md-7">
-                                <div class="row g-3">
+                                <div class="row g-3 h-100">
                                     <!-- Linha de cima: dois cards -->
                                     <div class="col-6">
                                         <div class="card text-center shadow-sm border-0 h-100">
@@ -181,12 +195,12 @@
                             <div class="col-12 col-md-6">
                                 <h4 class="text-center fw-bold">Economia Acumulada</h4>
                                 <ul class="list-group">
-                                    <li class="list-group-item">Em <strong>1 mês</strong>, você terá economizado aproximadamente <span class="text-success">R$ {{ dto.economia_total.1_mes|floatformat:2 }}</span>.</li>
-                                    <li class="list-group-item">Em <strong>5 meses</strong>, sua economia acumulada será de cerca de <span class="text-success">R$ {{ dto.economia_total.5_meses|floatformat:2 }}</span>.</li>
-                                    <li class="list-group-item">Em <strong>1 ano</strong>, sua economia irá acumular aproximadamente <span class="text-success">R$ {{ dto.economia_total.1_ano|floatformat:2 }}</span>.</li>
-                                    <li class="list-group-item">Em <strong>3 anos</strong>, você vai economizar cerca de <span class="text-success">R$ {{ dto.economia_total.3_anos|floatformat:2 }}</span>.</li>
-                                    <li class="list-group-item">Em <strong>5 anos</strong>, sua economia terá acumulado cerca de <span class="text-success">R$ {{ dto.economia_total.5_anos|floatformat:2 }}</span>.</li>
-                                    <li class="list-group-item">Em <strong>10 anos</strong>, sua economia totalizará aproximadamente <span class="text-success">R$ {{ dto.economia_total.10_anos|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>1 mês</strong>, você terá economizado aproximadamente <span class="text-success">R$ {{ dto.economia_total.mes_1|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>5 meses</strong>, sua economia acumulada será de cerca de <span class="text-success">R$ {{ dto.economia_total.mes_5|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>1 ano</strong>, sua economia irá acumular aproximadamente <span class="text-success">R$ {{ dto.economia_total.ano_1|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>3 anos</strong>, você vai economizar cerca de <span class="text-success">R$ {{ dto.economia_total.ano_3|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>5 anos</strong>, sua economia terá acumulado cerca de <span class="text-success">R$ {{ dto.economia_total.ano_5|floatformat:2 }}</span>.</li>
+                                    <li class="list-group-item">Em <strong>10 anos</strong>, sua economia totalizará aproximadamente <span class="text-success">R$ {{ dto.economia_total.ano_10|floatformat:2 }}</span>.</li>
                                 </ul>
                             </div>
 
@@ -246,7 +260,7 @@
                             <div class="col-12 col-md-4 mx-auto my-3">
                                 <h6 class="text-center fw-bold">Comparativo de Conta</h6>
                                 <canvas id="grafico_conta" height="300" class="mb-3"></canvas>
-                                {% if dto.conta_nova < simulacao.conta_luz %}
+                                {% if dto.conta_nova.valor_liquido < simulacao.conta_luz %}
                                     <p class="text-center">Você vai <strong class="text-success">reduzir</strong> a sua conta de luz em aproximadamente {{ dto.porcentagem_economia }}% </p>
                                 {% else %}
                                     <p class="text-center">Sua conta de luz vai <strong class="text-danger">aumentar</strong> em {{ dto.porcentagem_economia }}%!</p>
@@ -272,7 +286,7 @@
         <input type="hidden" id="area_disponivel" value="{{ simulacao.area_disponivel }}">
         <input type="hidden" id="area_utilizada" value="{{ dto.area_utilizada_m2 }}">
         <input type="hidden" id="conta_antiga" value="{{ simulacao.conta_luz }}">
-        <input type="hidden" id="conta_nova" value="{{ dto.conta_nova }}">
+        <input type="hidden" id="conta_nova" value="{{ dto.conta_nova.valor_liquido }}">
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
