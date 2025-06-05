@@ -24,11 +24,16 @@ class SimulacaoService:
         return cls._percentuais_tusd[ano]
 
     def calcular_acrescimos(self, valor_total: float) -> float:
-        return valor_total * 1,6
+        return valor_total * 1,65
 
-    def calcular_tarifa_disponibilidade(self, te: float, tusd: float):
+    def calcular_tarifa_disponibilidade(self, potencia: float, te: float, tusd: float):
         '''Calcula o valor mínimo pelo consumo bifásico'''
-        kwh_minimo = 50
+        if potencia <= 12:
+            kwh_minimo = 30
+        elif potencia <= 25:
+            kwh_minimo = 50
+        else:
+            kwh_minimo = 100
         return kwh_minimo * (te + tusd)
     
     def calcular_tarifas_adicionais(self, base_tributavel: float) -> TarifasAdicionaisDTO:
@@ -44,7 +49,7 @@ class SimulacaoService:
             total=total
         )
 
-    def calcular_tarifa(self, consumo_rede: float, geracao_kit: float) -> ContaNovaDTO:
+    def calcular_tarifa(self, potencia: float, consumo_rede: float, geracao_kit: float) -> ContaNovaDTO:
         '''Função que calcula o valor líquido (compensação/injeção + taxas adicionais) sobre a energia de um kit de paineis solares.'''
         ano = int(date.today().strftime('%Y'))
         tusd = self.simulacao.concessionaria.tusd
@@ -54,7 +59,7 @@ class SimulacaoService:
         fio_b = 0.28
     
         # 1. Custo de Disponibilidade
-        custo_disponibilidade = self.calcular_tarifa_disponibilidade(te=te, tusd=tusd)
+        custo_disponibilidade = self.calcular_tarifa_disponibilidade(potencia=potencia, te=te, tusd=tusd)
 
         # 2. Cálculo do Consumo Bruto
         saldo_energia = geracao_kit - consumo_rede
@@ -160,6 +165,7 @@ class SimulacaoService:
 
         # Economia e Payback
         conta_final = self.calcular_tarifa(
+            potencia=potencia_total,
             consumo_rede=consumo_usuario,
             geracao_kit=energia_total
         )
