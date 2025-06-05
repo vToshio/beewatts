@@ -1,14 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
 from .models import Endereco, Concessionaria, PainelSolar, Simulacao
 from .services import EnderecoService, SimulacaoService, GeolocalizacaoError, HSPError
 from .forms import EnderecoForm, DadosIniciaisForm
 from uuid import UUID
 from wkhtmltopdf.views import PDFTemplateResponse
-from django.template.loader import get_template
-
-from django.template.loader import render_to_string
 
 # Create your views here.
 def index(request: HttpRequest):
