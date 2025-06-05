@@ -9,31 +9,34 @@ class EnderecoForm(forms.Form):
         regex=r'^([\d]{8})$',
         widget = forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Ex: 12345678, 13245248...',
+            'placeholder': 'Insira seu CEP (apenas números)',
         }),
         required=True
     )
     uf = forms.CharField(
         label='UF',
         widget = forms.TextInput(attrs={
-            'class': 'form-control',
+            'class': 'form-control bg-secondary-subtle',
             'readonly': True,
+            'placeholder': 'Aguarde o preenchimento automático'
         }),
         required=True
     )
     cidade = forms.CharField(
         label='Cidade',
         widget = forms.TextInput(attrs={
-            'class': 'form-control',
+            'class': 'form-control bg-secondary-subtle',
             'readonly': True,
+            'placeholder': 'Aguarde o preenchimento automático'
         }),
         required=True
     )
     logradouro = forms.CharField(
         label='Logradouro',
         widget = forms.TextInput(attrs={
-            'class': 'form-control',
-            'readonly': True
+            'class': 'form-control bg-secondary-subtle',
+            'readonly': True,
+            'placeholder': 'Campo opcional'
         }),
         required=False
     )
@@ -43,7 +46,7 @@ class DadosIniciaisForm(forms.Form):
         label='Concessionária',
         widget=forms.Select(attrs={
             'class': 'form-control',
-            'placeholder': 'Escolha a sua concessionária de energia!',
+            'placeholder': 'Escolha a sua concessionária de energia',
         }),
         required=True
     )
@@ -51,7 +54,7 @@ class DadosIniciaisForm(forms.Form):
         label='Painel Solar',
         widget=forms.Select(attrs={
             'class': 'form-control',
-            'placeholder': 'Escolha qual painel deseja simular!',
+            'placeholder': 'Escolha qual painel deseja simular',
         }),
         required=True
     )
@@ -59,7 +62,7 @@ class DadosIniciaisForm(forms.Form):
         label='Conta de Luz Atual (R$)',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Ex: 49.90, 67.87...',
+            'placeholder': 'Insira sua conta de luz (R$)',
         }),
         required=True
     )
@@ -67,7 +70,7 @@ class DadosIniciaisForm(forms.Form):
         label='Área Total para Instalação (m²)',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Esse campo é opcional',
+            'placeholder': 'Insira a área disponível (m²)',
         }),
         required=False,
     )

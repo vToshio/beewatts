@@ -5,4 +5,3 @@ def validar_positivo(valor: float|int):
         raise ValidationError(
             message='O valor precisa ser positivo!'
         )
-    

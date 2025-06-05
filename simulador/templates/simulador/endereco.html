@@ -26,7 +26,7 @@
                             </div>
                             {% for field in form.visible_fields %}
                             <div class="form-group mb-2">
-                                <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+                                <label for="{{ field.name }}" class="form-label">{{ field.label }} {% if field.label == 'CEP' %} <span class="text-warning fw-bold">*</span>  {% endif %}</label>
                                 {{ field }}
                             </div>
                             {% endfor %}
